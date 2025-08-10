@@ -4,6 +4,7 @@ import LanguageSwitcher from '../components/LanguageSwitcher';
 import Header from '../components/Header'; // yeni satır
 import React from 'react';
 
+
 export default async function RootLayout({children}:{children: React.ReactNode}){
   const locale = await getLocale();
   const messages = await getMessages();
@@ -12,7 +13,7 @@ export default async function RootLayout({children}:{children: React.ReactNode})
       <body>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <Header />
-          
+
           {children}
         </NextIntlClientProvider>
       </body>
