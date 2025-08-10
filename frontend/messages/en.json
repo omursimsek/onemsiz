@@ -1,0 +1,16 @@
+{
+  "Login": {
+    "title": "Sign in",
+    "email": "Email",
+    "password": "Password",
+    "button": "Login",
+    "invalid": "Invalid credentials",
+    "success": "Logged in! Token saved.",
+    "error": "Network error"
+  },
+  "Dashboard": { 
+    "hello": "Welcome" },
+  "Admin": { "title": "Admin Panel", "desc": "Manage your tenant." },
+  "Super": { "title": "Super Admin", "desc": "Platform-wide configuration & tenants." },
+  "Common": { "logout": "Logout" }
+}

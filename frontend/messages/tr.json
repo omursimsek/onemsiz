@@ -1,0 +1,17 @@
+{
+  "Login": {
+    "title": "Giriş yap",
+    "email": "E-posta",
+    "password": "Şifre",
+    "button": "Giriş",
+    "invalid": "Geçersiz bilgiler",
+    "success": "Giriş başarılı! Token kaydedildi.",
+    "error": "Ağ hatası"
+  },
+  "Dashboard": { 
+    "hello": "Hoşgeldiniz" 
+  },
+  "Admin": { "title": "Yönetici Paneli", "desc": "Tenant’ınızı yönetin." },
+  "Super": { "title": "Süper Admin", "desc": "Platform genel ayarlar ve tenantlar." },
+  "Common": { "logout": "Çıkış" }
+}
