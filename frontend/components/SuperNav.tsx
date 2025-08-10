@@ -22,6 +22,7 @@ export default function SuperNav({headerHeight = 52, width = 240}: {headerHeight
       <nav style={{display:'flex', flexDirection:'column', gap:8}}>
         <Link href="/super" style={navItemStyle}>🏠 Dashboard</Link>
         <Link href="/super/users" style={navItemStyle}>👥 Kullanıcı yönetimi</Link>
+        <Link href="/super/tenants" style={navItemStyle}>🏢 Tenant yönetimi</Link> 
       </nav>
     </aside>
   );
