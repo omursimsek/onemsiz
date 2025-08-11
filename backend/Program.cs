@@ -9,6 +9,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using Backend.Models;
 using Microsoft.Extensions.FileProviders;
+using System.Security.Claims;
+using System.IdentityModel.Tokens.Jwt;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -85,6 +87,8 @@ builder.Services.AddAuthentication(options =>
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 }).AddJwtBearer(options =>
 {
+    options.MapInboundClaims = false;
+    
     options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuer = !string.IsNullOrEmpty(jwtIssuer),
@@ -94,7 +98,11 @@ builder.Services.AddAuthentication(options =>
         IssuerSigningKey = signingKey,
         ValidIssuer = jwtIssuer,
         ValidAudience = jwtAudience,
-        ClockSkew = TimeSpan.Zero
+        ClockSkew = TimeSpan.Zero,
+
+        // 🔧 ÖNEMLİ: JWT'deki role/tid mapping'i netleştir
+        NameClaimType = JwtRegisteredClaimNames.Sub,
+        RoleClaimType = ClaimTypes.Role
     };
 });
 
@@ -187,7 +195,7 @@ app.UseCors("frontend");
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapGet("/health/static", () => Results.Ok("ok"));
+
 
 app.MapControllerRoute(
     name: "default",
