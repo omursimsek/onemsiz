@@ -1,6 +1,7 @@
 import {getTranslations} from 'next-intl/server';
 import {cookies} from 'next/headers';
 
+
 const flash = (await cookies()).get('flash')?.value;
 
 {flash === 'tenant_required' && <p style={{color:'crimson'}}>TenantAdmin/TenantUser için tenant seçimi zorunlu.</p>}

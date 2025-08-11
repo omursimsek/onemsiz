@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import {HEADER_HEIGHT} from './Header';
+import {HEADER_HEIGHT, SIDEBAR_WIDTH} from '../shared/ui';
 
-export default function SuperNav({width=240}:{width?:number}) {
+export default function SuperNav({width=SIDEBAR_WIDTH}:{width?:number}) {
   return (
     <aside
       style={{

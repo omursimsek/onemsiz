@@ -1,6 +1,8 @@
 import SuperNav from '../../components/SuperNav';
 import {ReactNode} from 'react';
-import {HEADER_HEIGHT} from '../../components/Header';
+import {HEADER_HEIGHT, SIDEBAR_WIDTH} from '../../shared/ui';
+
+
 
 export default function SuperLayout({children}:{children: React.ReactNode}) {
   return (
