@@ -13,5 +13,40 @@
   },
   "Admin": { "title": "Yönetici Paneli", "desc": "Tenant’ınızı yönetin." },
   "Super": { "title": "Süper Admin", "desc": "Platform genel ayarlar ve tenantlar." },
-  "Common": { "logout": "Çıkış" }
+  "Common": { "logout": "Çıkış", "login": "Giriş" },
+  "super-nav": {
+    "title": "Süper Admin",
+    "dashboard": "Gösterge Paneli",
+    "users": "Kullanıcı yönetimi",
+    "tenants": "Tenant yönetimi"
+  },
+  "super-users": {
+    "title": "Kullanıcı yönetimi",
+    "createUser": "Yeni kullanıcı oluştur",
+    "email": "E-posta",
+    "role": "Rol",
+    "tenant": "Tenant",
+    "status": "Durum",
+    "date": "Tarih",
+    "active": "Aktif",
+    "inactive": "Pasif",
+    "deactivate": "Pasifleştir",
+    "activate": "Aktifleştir"
+  },
+  "super-tenants": {
+    "title": "Tenant yönetimi",
+    "createTenant": "Yeni tenant oluştur",
+    "name": "Ad",
+    "slug": "Slug (ör. acme)",
+    "defaultCulture": "Varsayılan dil",
+    "logo": "Logo dosyası",
+    "create": "Oluştur",
+    "status": "Durum",
+    "date": "Oluşturma tarihi",
+    "language": "Dil",
+    "active": "Aktif",
+    "inactive": "Pasif",
+    "deactivate": "Pasifleştir",
+    "activate": "Aktifleştir"
+  }
 }

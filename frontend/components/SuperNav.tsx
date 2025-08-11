@@ -1,7 +1,10 @@
 import Link from 'next/link';
+import {getTranslations} from 'next-intl/server';
 import {HEADER_HEIGHT, SIDEBAR_WIDTH} from '../shared/ui';
 
-export default function SuperNav({width=SIDEBAR_WIDTH}:{width?:number}) {
+export default async function SuperNav({width = SIDEBAR_WIDTH}:{width?:number}) {
+  const t = await getTranslations('super-nav');
+
   return (
     <aside
       style={{
@@ -13,11 +16,13 @@ export default function SuperNav({width=SIDEBAR_WIDTH}:{width?:number}) {
         zIndex: 10, overflowY:'auto', padding:16, boxSizing:'border-box'
       }}
     >
-      <div style={{fontWeight:700, fontSize:18, marginBottom:12}}>Super Admin</div>
+      <div style={{fontWeight:700, fontSize:18, marginBottom:12}}>
+        {t('title')}
+      </div>
       <nav style={{display:'flex', flexDirection:'column', gap:8}}>
-        <Link href="/super" style={navItem}>🏠 Dashboard</Link>
-        <Link href="/super/users" style={navItem}>👥 Kullanıcı yönetimi</Link>
-        <Link href="/super/tenants" style={navItem}>🏢 Tenant yönetimi</Link>
+        <Link href="/super" style={navItem}>🏠 {t('dashboard')}</Link>
+        <Link href="/super/users" style={navItem}>👥 {t('users')}</Link>
+        <Link href="/super/tenants" style={navItem}>🏢 {t('tenants')}</Link>
       </nav>
     </aside>
   );

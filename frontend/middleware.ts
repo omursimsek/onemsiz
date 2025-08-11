@@ -6,6 +6,7 @@ type UserCookie = { email: string; role: string; tenantId?: string|null };
 const PREFIX = process.env.APP_COOKIE_PREFIX || 'b2b_';
 const TOKEN = PREFIX + 'token';
 const USER  = PREFIX + 'user';
+const API_BASE = process.env.API_BASE_INTERNAL || 'http://api:8080'; // 👈 eklendi
 
 // Güvenli parse
 function parseUser(v?: string): UserCookie | null {
@@ -16,9 +17,9 @@ function parseUser(v?: string): UserCookie | null {
 // Yetki kuralı
 function isAllowed(pathname: string, role?: string|null): boolean {
   if (!role) return false;
-  if (pathname.startsWith('/super'))    return role === 'SuperAdmin';
-  if (pathname.startsWith('/admin'))    return role === 'TenantAdmin';
-  if (pathname.startsWith('/dashboard'))return role === 'TenantAdmin' || role === 'TenantUser';
+  if (pathname.startsWith('/super'))     return role === 'SuperAdmin';
+  if (pathname.startsWith('/admin'))     return role === 'TenantAdmin';
+  if (pathname.startsWith('/dashboard')) return role === 'TenantAdmin' || role === 'TenantUser';
   // login/public sayfalar serbest
   if (pathname === '/login' || pathname.startsWith('/login/')) return true;
   return true;
@@ -31,7 +32,7 @@ function roleTarget(role?: string|null) {
   return '/login';
 }
 
-export function middleware(req: NextRequest) {
+export async function middleware(req: NextRequest) { // 👈 async yaptık
   const {pathname} = req.nextUrl;
 
   // Eski isimli cookie'leri tespit et → temizle
@@ -75,7 +76,47 @@ export function middleware(req: NextRequest) {
     return NextResponse.redirect(url, {status: 303});
   }
 
-  return NextResponse.next();
+  // --- LOCALE OTOMATİK AYARI (opsiyonel iyileştirme) ---
+  const res = NextResponse.next(); // normal akış
+
+  const hasLocale = Boolean(req.cookies.get('locale')?.value);
+  if (!hasLocale) {
+    // Token varsa tenant defaultCulture'ı çek
+    if (token) {
+      try {
+        const r = await fetch(`${API_BASE}/api/tenant/me`, {
+          headers: { Authorization: `Bearer ${token}` },
+          // cache: 'no-store'  // istersen ekleyebilirsin
+        });
+        if (r.ok) {
+          const data = await r.json();
+          const def = (data?.defaultCulture as string | undefined) || 'en';
+          res.cookies.set('locale', def, {
+            path: '/',
+            httpOnly: false,   // client LanguageSwitcher güncelleyebilsin
+            sameSite: 'lax',
+            maxAge: 60 * 60 * 24 * 365 // 1 yıl
+          });
+        }
+      } catch {
+        // sessiz geç
+      }
+    }
+    // Token yoktu veya fetch başarısızsa güvenli fallback
+    /*
+    if (!res.cookies.get('locale')) {
+      res.cookies.set('locale', 'en', {
+        path: '/',
+        httpOnly: false,
+        sameSite: 'lax',
+        maxAge: 60 * 60 * 24 * 365
+      });
+    }
+      */
+  }
+  // --- /LOCALE ---
+
+  return res;
 }
 
 export const config = {

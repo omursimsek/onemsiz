@@ -12,5 +12,40 @@
     "hello": "Welcome" },
   "Admin": { "title": "Admin Panel", "desc": "Manage your tenant." },
   "Super": { "title": "Super Admin", "desc": "Platform-wide configuration & tenants." },
-  "Common": { "logout": "Logout" }
+  "Common": { "logout": "Logout", "login": "Login" },
+  "super-nav": {
+    "title": "Super Admin",
+    "dashboard": "Dashboard",
+    "users": "User management",
+    "tenants": "Tenant management"
+  },
+  "super-users": {
+    "title": "User management",
+    "createUser": "Create new user",
+    "email": "Email",
+    "role": "Role",
+    "tenant": "Tenant",
+    "status": "Status",
+    "date": "Date",
+    "active": "Active",
+    "inactive": "Inactive",
+    "deactivate": "Deactivate",
+    "activate": "Activate"
+  },
+  "super-tenants": {
+    "title": "Tenant management",
+    "createTenant": "Create new tenant",
+    "name": "Name",
+    "slug": "Slug (e.g. acme)",
+    "defaultCulture": "Default language",
+    "logo": "Logo file",
+    "create": "Create",
+    "status": "Status",
+    "date": "Creation date",
+    "language": "Language",
+    "active": "Active",
+    "inactive": "Inactive",
+    "deactivate": "Deactivate",
+    "activate": "Activate"
+  }
 }

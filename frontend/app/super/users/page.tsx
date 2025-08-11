@@ -1,5 +1,6 @@
 import {cookies} from 'next/headers';
 import TenantRoleForm from '../../../components/TenantRoleForm';
+import {getTranslations} from 'next-intl/server';
 
 
 const API_BASE = process.env.API_BASE_INTERNAL || 'http://api:8080';
@@ -36,13 +37,15 @@ export default async function SuperUsersPage(){
   const users = token ? await fetchUsers(token) : [];
   const tenants = token ? await fetchTenants(token) : [];
 
+  const t = await getTranslations('super-users');
+
   return (
     <main style={{padding:24}}>
-      <h1 style={{marginBottom:16}}>Kullanıcı yönetimi</h1>
+      <h1 style={{marginBottom:16}}>{t('title')}</h1>
 
       {/* Oluşturma formu: route handler'a post eder */}
       <section style={{marginBottom:24, border:'1px solid #eee', borderRadius:12, padding:16}}>
-        <h3>Yeni kullanıcı oluştur</h3>
+        <h3>{t('createUser')}</h3>
         <TenantRoleForm tenants={tenants} />
       </section>
 
@@ -51,11 +54,11 @@ export default async function SuperUsersPage(){
         <table style={{width:'100%', borderCollapse:'collapse'}}>
           <thead>
             <tr>
-              <th align="left">Email</th>
-              <th align="left">Rol</th>
-              <th align="left">Tenant</th>
-              <th align="left">Durum</th>
-              <th align="left">Tarih</th>
+              <th align="left">{t('email')}</th>
+              <th align="left">{t('role')}</th>
+              <th align="left">{t('tenant')}</th>
+              <th align="left">{t('status')}</th>
+              <th align="left">{t('date')}</th>
               <th></th>
             </tr>
           </thead>
@@ -65,13 +68,13 @@ export default async function SuperUsersPage(){
                 <td>{u.email}</td>
                 <td>{u.role}</td>
                 <td>{u.tenantName ?? '—'}</td>
-                <td>{u.isActive ? 'Aktif' : 'Pasif'}</td>
+                <td>{u.isActive ? t('active') : t('inactive')}</td>
                 <td>{new Date(u.createdAt).toLocaleString()}</td>
                 <td style={{textAlign:'right'}}>
                   <form action="/api/super/users/toggle" method="post" style={{display:'inline'}}>
                     <input type="hidden" name="id" value={u.id} />
                     <input type="hidden" name="isActive" value={(!u.isActive).toString()} />
-                    <button type="submit">{u.isActive ? 'Pasifleştir' : 'Aktifleştir'}</button>
+                    <button type="submit">{u.isActive ? t('deactivate') : t('activate')}</button>
                   </form>
                 </td>
               </tr>
