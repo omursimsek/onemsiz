@@ -36,7 +36,7 @@ export default function LanguageSwitcher(){
     <div ref={ref} style={styles.container}>
       <button onClick={()=>setOpen(v=>!v)} style={styles.trigger} aria-haspopup="listbox" aria-expanded={open}>
         <span style={{fontSize: 18, marginRight: 8}}>{current.flag}</span>
-        <span>{current.label}</span>
+        <span style={{color:'black'}}>{current.label}</span>
         <svg width="16" height="16" viewBox="0 0 20 20" aria-hidden="true" style={{marginLeft: 6}}>
           <path d="M5 7l5 6 5-6H5z"></path>
         </svg>
@@ -52,7 +52,7 @@ export default function LanguageSwitcher(){
                 style={{...styles.item, ...(opt.code===locale?styles.itemActive:{} )}}
               >
                 <span style={{fontSize: 18, marginRight: 8}}>{opt.flag}</span>
-                <span>{opt.label}</span>
+                <span style={{color:'black'}}>{opt.label}</span>
               </button>
             </li>
           ))}

@@ -1,39 +1,30 @@
 import Link from 'next/link';
+import {HEADER_HEIGHT} from './Header';
 
-// Make props optional if you like
-export default function SuperNav({headerHeight = 52, width = 240}: {headerHeight?: number; width?: number}) {
+export default function SuperNav({width=240}:{width?:number}) {
   return (
     <aside
       style={{
-        position: 'sticky',
-        top: headerHeight,                 // ← sits below the Header
-        height: `calc(100vh - ${headerHeight}px)`,
-        width,
-        flex: `0 0 ${width}px`,            // ← fixed width in the flex row
-        borderRight: '1px solid #eee',
-        background: '#fff',
-        zIndex: 10,
-        overflowY: 'auto',
-        padding: 16,
-        boxSizing: 'border-box'
+        position:'sticky',
+        top: HEADER_HEIGHT,
+        height: `calc(100vh - ${HEADER_HEIGHT}px)`,
+        width, flex: `0 0 ${width}px`,
+        borderRight:'1px solid #eee', background:'#fff',
+        zIndex: 10, overflowY:'auto', padding:16, boxSizing:'border-box'
       }}
     >
-      <div style={{fontWeight: 700, fontSize: 18, marginBottom: 12}}>Super Admin</div>
+      <div style={{fontWeight:700, fontSize:18, marginBottom:12}}>Super Admin</div>
       <nav style={{display:'flex', flexDirection:'column', gap:8}}>
-        <Link href="/super" style={navItemStyle}>🏠 Dashboard</Link>
-        <Link href="/super/users" style={navItemStyle}>👥 Kullanıcı yönetimi</Link>
-        <Link href="/super/tenants" style={navItemStyle}>🏢 Tenant yönetimi</Link> 
+        <Link href="/super" style={navItem}>🏠 Dashboard</Link>
+        <Link href="/super/users" style={navItem}>👥 Kullanıcı yönetimi</Link>
+        <Link href="/super/tenants" style={navItem}>🏢 Tenant yönetimi</Link>
       </nav>
     </aside>
   );
 }
 
-const navItemStyle: React.CSSProperties = {
-  padding: '8px 10px',
-  borderRadius: 10,
-  border: '1px solid #f1f5f9',
-  background: '#fff',
-  textDecoration: 'none',
-  color: 'inherit',
-  display: 'block'
+const navItem: React.CSSProperties = {
+  padding:'8px 10px', borderRadius:10,
+  border:'1px solid #f1f5f9', background:'#fff',
+  textDecoration:'none', color:'inherit', display:'block'
 };

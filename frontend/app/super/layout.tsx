@@ -1,29 +1,17 @@
 import SuperNav from '../../components/SuperNav';
 import {ReactNode} from 'react';
+import {HEADER_HEIGHT} from '../../components/Header';
 
-// If your Header is ~52px tall. Adjust if different.
-const HEADER_H = 52;
-const SIDEBAR_W = 240;
-
-export default function SuperLayout({children}:{children: ReactNode}){
+export default function SuperLayout({children}:{children: React.ReactNode}) {
   return (
     <div
       style={{
-        display: 'flex',
-        alignItems: 'stretch',
-        minHeight: `calc(100vh - ${HEADER_H}px)`,
+        display:'flex', alignItems:'stretch',
+        minHeight: `calc(100vh - ${HEADER_HEIGHT}px)`
       }}
     >
-      <SuperNav headerHeight={HEADER_H} width={SIDEBAR_W} />
-      <main
-        style={{
-          flex: '1 1 auto',
-          minWidth: 0,            // ← prevents overlap when content is wide
-          padding: 24,
-          overflowX: 'auto',      // ← tables won’t push into the sidebar
-          background: '#fff'
-        }}
-      >
+      <SuperNav />
+      <main style={{flex:'1 1 auto', minWidth:0, padding:24, overflowX:'auto', background:'#fff'}}>
         {children}
       </main>
     </div>
