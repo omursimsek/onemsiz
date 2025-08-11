@@ -13,6 +13,11 @@ public class Tenant
     public string Slug { get; set; } = default!; // subdomain / kısa ad
     public bool IsActive { get; set; } = true;
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+
+    [MaxLength(16)]
+    public string DefaultCulture { get; set; } = "en"; // örn: en, tr
+    [MaxLength(512)]
+    public string? LogoPath { get; set; } // wwwroot içindeki göreli yol: /tenants/{id}/logo.png
 }
 
 public class AppUser

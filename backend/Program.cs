@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using Backend.Models;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -133,13 +134,15 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    db.Database.EnsureCreated();
+    //db.Database.EnsureCreated();
+    db.Database.Migrate();
 
     if (!db.Users.Any(u => u.Role == AppRole.SuperAdmin))
     {
         var email = builder.Configuration["Seed:SuperAdminEmail"] ?? "superadmin@example.com";
-        var pass  = builder.Configuration["Seed:SuperAdminPassword"] ?? "Super#1234";
-        db.Users.Add(new AppUser {
+        var pass = builder.Configuration["Seed:SuperAdminPassword"] ?? "Super#1234";
+        db.Users.Add(new AppUser
+        {
             Email = email,
             PasswordHash = BCrypt.Net.BCrypt.HashPassword(pass),
             Role = AppRole.SuperAdmin
@@ -160,6 +163,12 @@ if (app.Environment.IsDevelopment())
 
 app.UseRequestLocalization(app.Services.GetRequiredService<Microsoft.Extensions.Options.IOptions<RequestLocalizationOptions>>().Value);
 app.UseStaticFiles();
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+        Path.Combine(app.Environment.ContentRootPath, "wwwroot", "tenants")),
+    RequestPath = "/tenants"
+});
 app.UseRouting();
 
 // Tenant resolver middleware
@@ -177,6 +186,8 @@ app.Use(async (ctx, next) =>
 app.UseCors("frontend");
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.MapGet("/health/static", () => Results.Ok("ok"));
 
 app.MapControllerRoute(
     name: "default",

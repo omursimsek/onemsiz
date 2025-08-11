@@ -5,7 +5,7 @@ const PREF = process.env.APP_COOKIE_PREFIX || 'b2b_';
 
 type TenantRow = {
   id: string; name: string; slug: string;
-  isActive: boolean; createdAt: string;
+  isActive: boolean; createdAt: string; defaultCulture: string; logoUrl: string | null;
 };
 
 async function fetchTenants(token: string): Promise<TenantRow[]> {
@@ -28,9 +28,17 @@ export default async function SuperTenantsPage(){
       {/* Oluşturma formu */}
       <section style={{marginBottom:24, border:'1px solid #eee', borderRadius:12, padding:16}}>
         <h3>Yeni tenant oluştur</h3>
-        <form action="/api/super/tenants/create" method="post" style={{display:'grid', gridTemplateColumns:'1fr 1fr auto', gap:12}}>
+        <form action="/api/super/tenants/create" method="post" encType="multipart/form-data" style={{display:'grid', gridTemplateColumns:'1fr 1fr auto', gap:12}}>
           <input name="name" type="text" placeholder="Tenant adı" required />
           <input name="slug" type="text" placeholder="Slug (ör. acme)" required />
+          {/* Varsayılan dil */}
+          <select name="defaultCulture" defaultValue="en">
+            <option value="en">English</option>
+            <option value="tr">Türkçe</option>
+          {/* ileride: de, fr, ... */}
+          </select>
+          {/* Logo dosyası */}
+          <input name="logo" type="file" accept=".png,.svg,.webp" />
           <button type="submit">Oluştur</button>
         </form>
         <p style={{marginTop:8, fontSize:12, color:'#64748b'}}>
@@ -47,6 +55,8 @@ export default async function SuperTenantsPage(){
               <th align="left">Slug</th>
               <th align="left">Durum</th>
               <th align="left">Oluşturma</th>
+              <th align="left">Logo</th>
+              <th align="left">Dil</th>
               <th></th>
             </tr>
           </thead>
@@ -57,6 +67,10 @@ export default async function SuperTenantsPage(){
                 <td>{t.slug}</td>
                 <td>{t.isActive ? 'Aktif' : 'Pasif'}</td>
                 <td>{new Date(t.createdAt).toLocaleString()}</td>
+                <td>
+                    {t.logoUrl ? <img src={t.logoUrl} alt="logo" style={{height:24}}/> : '—'}
+                </td>
+                <td>{t.defaultCulture?.toUpperCase() ?? 'EN'}</td>
                 <td style={{textAlign:'right'}}>
                   <form action="/api/super/tenants/toggle" method="post" style={{display:'inline'}}>
                     <input type="hidden" name="id" value={t.id} />
