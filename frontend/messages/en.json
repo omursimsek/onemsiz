@@ -90,5 +90,93 @@
     "actions": {
       "create": "Create"
     }
+  },
+  "portal": {
+    "noAccess": "You do not have access to this section.",
+    "role": "Role",
+    "company": "Company",
+    "country": "Country",
+    "office": "Office",
+    "breadcrumb": { "section": "Dashboard", "home": "Home" },
+    "menu": {
+      "overview": { "title": "Overview" },
+      "shipments": { "title": "Shipments" },
+      "planning": { "title": "Planning" },
+      "finance": { "title": "Finance" },
+      "documents": { "title": "Documents" },
+      "support": { "title": "Support" },
+      "account": { "title": "Account" },
+      "items": {
+        "dashboard": "Dashboard",
+        "shipments_active": "Active Shipments",
+        "shipments_completed": "Completed Shipments",
+        "order_tracking": "Order Tracking",
+        "create_shipment": "Create Shipment",
+        "document_upload": "Document Upload",
+        "planned_routes": "Planned Routes",
+        "capacity_requests": "Capacity Requests",
+        "invoices": "Invoices",
+        "payment_status": "Payment Status",
+        "quotes": "Quotes",
+        "customs_docs": "Customs Documents",
+        "safety_certs": "Safety & Compliance Cert",
+        "message_center": "Message Center",
+        "tickets": "Tickets",
+        "help_center": "Help Center",
+        "profile_settings": "Profile & Settings",
+        "linked_scopes": "Linked Offices/Countries"
+      }
+    },
+    "dashboard": {
+      "kpi": {
+        "activeShipments": "Active Shipments",
+        "invoicesDue": "Invoices Due",
+        "onTime": "On-Time Performance"
+      },
+      "recentActivity": "Recent Activity",
+      "upcomingMilestones": "Upcoming Milestones",
+      "calendarPlaceholder": "Calendar / Gantt placeholder",
+      "activity": {
+        "sample1": "Shipment #RF-1042 departed Izmir",
+        "sample2": "Invoice INV-2025-091 generated",
+        "sample3": "ETA change: RF-1031 (Berlin → Rotterdam)"
+      }
+    },
+    "pages": {
+      "activeShipments": "Active Shipments",
+      "completedShipments": "Completed Shipments",
+      "orderTracking": "Order Tracking",
+      "createShipment": "Create Shipment",
+      "documentUpload": "Document Upload",
+      "plannedRoutes": "Planned Routes",
+      "capacityRequests": "Capacity Requests",
+      "invoices": "Invoices",
+      "paymentStatus": "Payment Status",
+      "quotes": "Quotes",
+      "customsDocs": "Customs Documents",
+      "safetyCerts": "Safety & Compliance",
+      "messageCenter": "Message Center",
+      "tickets": "Tickets",
+      "helpCenter": "Help Center",
+      "profileSettings": "Profile & Settings",
+      "linkedScopes": "Linked Offices/Countries",
+      "scopedList": "List active shipments (scoped).",
+      "completedList": "List completed shipments.",
+      "realtime": "Real-time tracking & alerts.",
+      "form": "Create shipment form.",
+      "upload": "Upload docs.",
+      "planned": "Planned routes & wagons.",
+      "capacity": "Capacity requests.",
+      "invoicesList": "Invoices list.",
+      "balances": "Open balances.",
+      "quotesMgmt": "Quotes management.",
+      "customsPerShipment": "Customs docs per shipment.",
+      "compliance": "Compliance certificates.",
+      "secureMessaging": "Secure messaging.",
+      "ticketsSla": "Tickets & SLAs.",
+      "faqGuides": "FAQ & guides.",
+      "profileEtc": "Profile, notifications, language & locale.",
+      "linkedInfo": "Linked countries/offices."
+    }
   }
 }

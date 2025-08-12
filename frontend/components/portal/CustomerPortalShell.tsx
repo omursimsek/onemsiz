@@ -2,28 +2,15 @@
 
 import React, { createContext, useContext, useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 import {
   ChevronDown, ChevronRight, Menu, X,
-  Globe, Building2, Factory, LogOut, LayoutDashboard, Package,
+  Globe, Building2, Factory,
+  LayoutDashboard, Package,
   CalendarClock, FileText, Receipt, MessageSquare, HelpCircle, Settings, Building
 } from 'lucide-react';
 
-/**
- * CustomerPortalShell – Tailwind UI (modern + responsive)
- * - Menü içeriği değişmedi (MENU/Access aynı)
- * - Sol menü: accordion + active indicator + collapse + mobile drawer
- * - Üst bar: scope switcher + logout
- */
-/*
-export default function TestPage() {
-  return (
-    <div className="bg-red-500 text-white p-4">
-      Tailwind is working 🚀
-    </div>
-  );
-}
-  */
-
+/** ============================== RBAC & Mock ============================== */
 
 export type CustomerRole =
   | 'CustomerGlobalAdmin'
@@ -35,7 +22,6 @@ export type Company = { id: string; name: string };
 export type Country = { id: string; companyId: string; iso: string; name: string };
 export type Office  = { id: string; companyId: string; countryId: string; name: string };
 
-/* ---------- Mock data (API ile değişecek) ---------- */
 const companies: Company[] = [
   { id: 'c1', name: 'RailFlow Logistics' },
   { id: 'c2', name: 'IntermodalCorp' }
@@ -60,7 +46,8 @@ const currentUser = {
   ]
 };
 
-/* ---------- Menü içeriği (DEĞİŞMEDİ) ---------- */
+/** ================================ Access ================================ */
+
 const Access: Record<string, CustomerRole[]> = {
   dashboard: ['CustomerGlobalAdmin','CustomerCountryManager','CustomerOfficeUser','CustomerReadOnly'],
   shipments_active: ['CustomerGlobalAdmin','CustomerCountryManager','CustomerOfficeUser','CustomerReadOnly'],
@@ -82,43 +69,47 @@ const Access: Record<string, CustomerRole[]> = {
   linked_scopes: ['CustomerGlobalAdmin','CustomerCountryManager']
 };
 
-export type MenuItem = { key: keyof typeof Access; label: string; icon?: React.ReactNode };
-const MENU: { group: string; icon?: React.ReactNode; items: MenuItem[] }[] = [
-  { group: 'Overview', icon: <LayoutDashboard className="h-4 w-4" />, items: [
-    { key: 'dashboard', label: 'Dashboard', icon: <LayoutDashboard className="h-4 w-4" /> }
+export type MenuItem = { key: keyof typeof Access; icon?: React.ReactNode; labelKey: string };
+type MenuGroup = { groupKey: string; icon?: React.ReactNode; items: MenuItem[] };
+
+/** MENÜ: Etiket yerine i18n anahtarları tutulur */
+const MENU_DEF: MenuGroup[] = [
+  { groupKey: 'overview', icon: <LayoutDashboard className="h-4 w-4" />, items: [
+    { key: 'dashboard', labelKey: 'items.dashboard', icon: <LayoutDashboard className="h-4 w-4" /> }
   ]},
-  { group: 'Shipments', icon: <Package className="h-4 w-4" />, items: [
-    { key: 'shipments_active',    label: 'Active Shipments',    icon: <Package className="h-4 w-4" /> },
-    { key: 'shipments_completed', label: 'Completed Shipments', icon: <Package className="h-4 w-4" /> },
-    { key: 'order_tracking',      label: 'Order Tracking',      icon: <CalendarClock className="h-4 w-4" /> },
-    { key: 'create_shipment',     label: 'Create Shipment',     icon: <Package className="h-4 w-4" /> },
-    { key: 'document_upload',     label: 'Document Upload',     icon: <FileText className="h-4 w-4" /> }
+  { groupKey: 'shipments', icon: <Package className="h-4 w-4" />, items: [
+    { key: 'shipments_active',    labelKey: 'items.shipments_active',    icon: <Package className="h-4 w-4" /> },
+    { key: 'shipments_completed', labelKey: 'items.shipments_completed', icon: <Package className="h-4 w-4" /> },
+    { key: 'order_tracking',      labelKey: 'items.order_tracking',      icon: <CalendarClock className="h-4 w-4" /> },
+    { key: 'create_shipment',     labelKey: 'items.create_shipment',     icon: <Package className="h-4 w-4" /> },
+    { key: 'document_upload',     labelKey: 'items.document_upload',     icon: <FileText className="h-4 w-4" /> }
   ]},
-  { group: 'Planning', icon: <CalendarClock className="h-4 w-4" />, items: [
-    { key: 'planned_routes',   label: 'Planned Routes',   icon: <CalendarClock className="h-4 w-4" /> },
-    { key: 'capacity_requests',label: 'Capacity Requests',icon: <Factory className="h-4 w-4" /> }
+  { groupKey: 'planning', icon: <CalendarClock className="h-4 w-4" />, items: [
+    { key: 'planned_routes',   labelKey: 'items.planned_routes',   icon: <CalendarClock className="h-4 w-4" /> },
+    { key: 'capacity_requests',labelKey: 'items.capacity_requests',icon: <Factory className="h-4 w-4" /> }
   ]},
-  { group: 'Finance', icon: <Receipt className="h-4 w-4" />, items: [
-    { key: 'invoices',       label: 'Invoices',       icon: <Receipt className="h-4 w-4" /> },
-    { key: 'payment_status', label: 'Payment Status', icon: <Receipt className="h-4 w-4" /> },
-    { key: 'quotes',         label: 'Quotes',         icon: <Receipt className="h-4 w-4" /> }
+  { groupKey: 'finance', icon: <Receipt className="h-4 w-4" />, items: [
+    { key: 'invoices',       labelKey: 'items.invoices',       icon: <Receipt className="h-4 w-4" /> },
+    { key: 'payment_status', labelKey: 'items.payment_status', icon: <Receipt className="h-4 w-4" /> },
+    { key: 'quotes',         labelKey: 'items.quotes',         icon: <Receipt className="h-4 w-4" /> }
   ]},
-  { group: 'Documents', icon: <FileText className="h-4 w-4" />, items: [
-    { key: 'customs_docs', label: 'Customs Documents',       icon: <FileText className="h-4 w-4" /> },
-    { key: 'safety_certs', label: 'Safety & Compliance Cert',icon: <FileText className="h-4 w-4" /> }
+  { groupKey: 'documents', icon: <FileText className="h-4 w-4" />, items: [
+    { key: 'customs_docs', labelKey: 'items.customs_docs', icon: <FileText className="h-4 w-4" /> },
+    { key: 'safety_certs', labelKey: 'items.safety_certs', icon: <FileText className="h-4 w-4" /> }
   ]},
-  { group: 'Support', icon: <MessageSquare className="h-4 w-4" />, items: [
-    { key: 'message_center', label: 'Message Center', icon: <MessageSquare className="h-4 w-4" /> },
-    { key: 'tickets',        label: 'Tickets',        icon: <MessageSquare className="h-4 w-4" /> },
-    { key: 'help_center',    label: 'Help Center',    icon: <HelpCircle className="h-4 w-4" /> }
+  { groupKey: 'support', icon: <MessageSquare className="h-4 w-4" />, items: [
+    { key: 'message_center', labelKey: 'items.message_center', icon: <MessageSquare className="h-4 w-4" /> },
+    { key: 'tickets',        labelKey: 'items.tickets',        icon: <MessageSquare className="h-4 w-4" /> },
+    { key: 'help_center',    labelKey: 'items.help_center',    icon: <HelpCircle className="h-4 w-4" /> }
   ]},
-  { group: 'Account', icon: <Settings className="h-4 w-4" />, items: [
-    { key: 'profile_settings', label: 'Profile & Settings', icon: <Settings className="h-4 w-4" /> },
-    { key: 'linked_scopes',    label: 'Linked Offices/Countries', icon: <Building2 className="h-4 w-4" /> }
+  { groupKey: 'account', icon: <Settings className="h-4 w-4" />, items: [
+    { key: 'profile_settings', labelKey: 'items.profile_settings', icon: <Settings className="h-4 w-4" /> },
+    { key: 'linked_scopes',    labelKey: 'items.linked_scopes',    icon: <Building2 className="h-4 w-4" /> }
   ]}
 ];
 
-/* ---------- Scope & RBAC ---------- */
+/** ================================ Context ================================ */
+
 export type Scope = { companyId: string; countryId: string; officeId: string };
 const ScopeContext = createContext<{ scope: Scope; setScope: (s: Scope) => void; userRole: CustomerRole } | null>(null);
 function useScope(){ const c = useContext(ScopeContext); if(!c) throw new Error('ScopeContext missing'); return c; }
@@ -135,14 +126,16 @@ function resolveRoleForScope(scope: Scope): CustomerRole {
 }
 
 function ProtectedView({ menuKey, children }: { menuKey: keyof typeof Access; children: React.ReactNode }) {
+  const t = useTranslations('portal'); // localization
   const { userRole } = useScope();
   return Access[menuKey].includes(userRole) ? <>{children}</> :
-    <div className="p-6 text-sm text-red-600">You do not have access to this section.</div>;
+    <div className="p-6 text-sm text-red-600">{t('noAccess')}</div>;
 }
 
-/* ================================ UI ===================================== */
+/** ================================ UI ==================================== */
 
 function ScopeSwitcher(){
+  const tp = useTranslations('portal'); // text for portal UI
   const { scope, setScope, userRole } = useScope();
   const countryOptions = useMemo(()=>countries.filter(c=>c.companyId===scope.companyId),[scope.companyId]);
   const officeOptions  = useMemo(()=>offices.filter(o=>o.companyId===scope.companyId && o.countryId===scope.countryId),[scope.companyId, scope.countryId]);
@@ -150,11 +143,11 @@ function ScopeSwitcher(){
   return (
     <div className="flex flex-wrap items-center gap-2">
       <span className="rounded-full bg-gray-100 px-2.5 py-1 text-xs text-gray-700 dark:bg-gray-800 dark:text-gray-300">
-        Role: <b>{userRole}</b>
+        {tp('role')}: <b>{userRole}</b>
       </span>
 
       <PillSelect
-        icon={<Globe className="h-3.5 w-3.5" />} label="Company"
+        icon={<Globe className="h-3.5 w-3.5" />} label={tp('company')}
         value={scope.companyId}
         options={companies.map(c=>({label:c.name, value:c.id}))}
         onChange={(companyId)=>{
@@ -164,7 +157,7 @@ function ScopeSwitcher(){
         }}
       />
       <PillSelect
-        icon={<Building className="h-3.5 w-3.5" />} label="Country"
+        icon={<Building className="h-3.5 w-3.5" />} label={tp('country')}
         value={scope.countryId}
         options={countryOptions.map(c=>({label:`${c.name} (${c.iso})`, value:c.id}))}
         onChange={(countryId)=>{
@@ -173,7 +166,7 @@ function ScopeSwitcher(){
         }}
       />
       <PillSelect
-        icon={<Factory className="h-3.5 w-3.5" />} label="Office"
+        icon={<Factory className="h-3.5 w-3.5" />} label={tp('office')}
         value={scope.officeId}
         options={officeOptions.map(o=>({label:o.name, value:o.id}))}
         onChange={(officeId)=> setScope({ ...scope, officeId })}
@@ -189,12 +182,14 @@ function PillSelect({
   options: {label:string; value:string}[]; onChange:(v:string)=>void;
 }){
   const [open,setOpen]=useState(false);
-  const active = options.find(o=>o.value===value)?.label ?? 'Select';
+  const active = options.find(o=>o.value===value)?.label ?? '—';
   return (
     <div className="relative">
       <button
         className="inline-flex items-center gap-2 rounded-full border bg-white px-3 py-1.5 text-xs shadow-sm hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-900"
         onClick={()=>setOpen(o=>!o)}
+        aria-expanded={open}
+        aria-haspopup="listbox"
       >
         <span className="opacity-70">{icon}</span>
         <span className="font-medium">{label}:</span>
@@ -206,12 +201,15 @@ function PillSelect({
           <motion.ul
             initial={{opacity:0, y:-6}} animate={{opacity:1, y:0}} exit={{opacity:0, y:-6}}
             className="absolute z-20 mt-2 w-56 rounded-xl border bg-white p-1 shadow-lg dark:border-gray-700 dark:bg-gray-900"
+            role="listbox"
           >
             {options.map(opt=>(
               <li key={opt.value}>
                 <button
                   onClick={()=>{ onChange(opt.value); setOpen(false); }}
                   className={`w-full rounded-lg px-3 py-2 text-left text-sm hover:bg-gray-100 dark:hover:bg-gray-800 ${opt.value===value?'bg-gray-50 dark:bg-gray-800':''}`}
+                  role="option"
+                  aria-selected={opt.value===value}
                 >
                   {opt.label}
                 </button>
@@ -230,20 +228,27 @@ function Sidebar({
   active: keyof typeof Access; setActive:(k:keyof typeof Access)=>void;
   sidebarOpen:boolean; setSidebarOpen:(b:boolean)=>void;
 }){
+  const t = useTranslations('portal.menu');
   const { userRole } = useScope();
   const [collapsed, setCollapsed] = useState(false);
   const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({});
 
-  // aktif item’in olduğu grup varsayılan açık
   React.useEffect(() => {
     const def: Record<string, boolean> = {};
-    for (const g of MENU) {
+    for (const g of MENU_DEF) {
       const visible = g.items.filter(i => Access[i.key].includes(userRole));
-      if (visible.some(i => i.key === active)) def[g.group] = true;
+      if (visible.some(i => i.key === active)) def[g.groupKey] = true;
     }
     setOpenGroups(def);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // i18n’lı menü: label’ları runtime’da üret
+  const MENU = useMemo(() => MENU_DEF.map(g => ({
+    ...g,
+    groupLabel: t(`${g.groupKey}.title`),
+    items: g.items.map(it => ({ ...it, label: t(it.labelKey) }))
+  })), [t]);
 
   const Wrapper = ({children}:{children:React.ReactNode}) => (
     <div className={`fixed inset-0 z-40 lg:static lg:z-auto ${sidebarOpen?'':'pointer-events-none lg:pointer-events-auto'}`}>
@@ -269,9 +274,9 @@ function Sidebar({
       <div className="flex items-center justify-between px-3 py-3">
         <div className="flex items-center gap-2">
           <div className="grid h-8 w-8 place-items-center rounded-xl bg-gray-900 text-white dark:bg-white dark:text-gray-900">
-            <span className="text-sm font-bold">RRR</span>
+            <span className="text-sm font-bold">CP</span>
           </div>
-          {!collapsed && <span className="text-sm font-semibold">SSS</span>}
+          {!collapsed && <span className="text-sm font-semibold">Portal</span>}
         </div>
         <div className="flex items-center gap-1">
           <button className="rounded-md p-2 hover:bg-gray-100 lg:hidden dark:hover:bg-gray-800" onClick={()=>setSidebarOpen(false)} aria-label="Close sidebar">
@@ -290,18 +295,18 @@ function Sidebar({
         {MENU.map(group => {
           const visibleItems = group.items.filter(i => Access[i.key].includes(userRole));
           if (visibleItems.length === 0) return null;
-          const isOpen = openGroups[group.group] ?? false;
+          const isOpen = openGroups[group.groupKey] ?? false;
 
           return (
-            <div key={group.group} className="mb-2">
+            <div key={group.groupKey} className="mb-2">
               <button
-                onClick={()=>setOpenGroups(s=>({...s, [group.group]: !isOpen}))}
+                onClick={()=>setOpenGroups(s=>({...s, [group.groupKey]: !isOpen}))}
                 className={`${collapsed ? 'px-2' : 'px-3'} group flex w-full items-center justify-between rounded-lg py-2 text-[11px] font-semibold uppercase tracking-wide text-gray-500 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-900`}
                 aria-expanded={isOpen}
               >
                 <span className="inline-flex items-center gap-2">
                   <span className="opacity-70">{group.icon}</span>
-                  {!collapsed && <span>{group.group}</span>}
+                  {!collapsed && <span>{group.groupLabel}</span>}
                 </span>
                 {!collapsed && (isOpen ? <ChevronDown className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />)}
               </button>
@@ -309,18 +314,18 @@ function Sidebar({
               <AnimatePresence initial={false}>
                 {(isOpen || collapsed) && (
                   <motion.ul
-                    key={`${group.group}-list`}
+                    key={`${group.groupKey}-list`}
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: 'auto', opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
                     className={`overflow-hidden ${collapsed ? 'px-1' : 'px-1.5'}`}
                   >
                     {visibleItems.map(item => {
-                      const isActive = active === item.key;
+                      const isActive = false; // entegrasyonda aktif route’a göre ayarla
                       return (
                         <li key={item.key}>
                           <button
-                            onClick={() => { setActive(item.key); setSidebarOpen(false); }}
+                            onClick={() => { /* setActive(item.key); router.push(...) */ }}
                             className={`group mt-1 flex w-full items-center gap-2 rounded-xl ${collapsed ? 'px-2 py-2' : 'px-3 py-2'} text-sm hover:bg-gray-100 dark:hover:bg-gray-800 relative ${isActive ? 'bg-gray-100 font-medium dark:bg-gray-800' : ''}`}
                           >
                             <span className={`absolute left-0 top-1.5 h-[calc(100%-12px)] w-[3px] rounded-r ${isActive ? 'bg-gray-900 dark:bg-white' : 'bg-transparent'}`} />
@@ -346,7 +351,7 @@ function Sidebar({
   );
 }
 
-/* ------------------------- Page stubs + atoms ----------------------------- */
+/** ============================ Page stubs ============================== */
 
 function KpiCard({ title, value, trend }: { title: string; value: string; trend?: string }){
   return (
@@ -370,24 +375,25 @@ function Panel({ title, children, className }: { title: string; children: React.
   );
 }
 function DashboardView() {
+  const t = useTranslations('portal.dashboard');
   return (
     <div className="space-y-5">
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-        <KpiCard title="Active Shipments" value="42" trend="+8%" />
-        <KpiCard title="Invoices Due" value="€ 18,450" trend="-3%" />
-        <KpiCard title="On-Time Performance" value="96%" trend="+1%" />
+        <KpiCard title={t('kpi.activeShipments')} value="42" trend="+8%" />
+        <KpiCard title={t('kpi.invoicesDue')} value="€ 18,450" trend="-3%" />
+        <KpiCard title={t('kpi.onTime')} value="96%" trend="+1%" />
       </div>
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-        <Panel title="Recent Activity">
+        <Panel title={t('recentActivity')}>
           <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-            <li>• Shipment #RF-1042 departed İzmir</li>
-            <li>• Invoice INV-2025-091 generated</li>
-            <li>• ETA change: RF-1031 (Berlin → Rotterdam)</li>
+            <li>• {t('activity.sample1')}</li>
+            <li>• {t('activity.sample2')}</li>
+            <li>• {t('activity.sample3')}</li>
           </ul>
         </Panel>
-        <Panel title="Upcoming Milestones" className="lg:col-span-2">
+        <Panel title={t('upcomingMilestones')} className="lg:col-span-2">
           <div className="h-36 rounded-xl border border-dashed p-4 text-sm text-gray-500 dark:border-gray-700">
-            Calendar / Gantt placeholder
+            {t('calendarPlaceholder')}
           </div>
         </Panel>
       </div>
@@ -395,24 +401,24 @@ function DashboardView() {
   );
 }
 
-/* Basit içerik stubları (menü değişmedi) */
-function ShipmentsActive(){ return <Panel title="Active Shipments"><div className="text-sm text-gray-700 dark:text-gray-300">List active shipments (scoped).</div></Panel>; }
-function ShipmentsCompleted(){ return <Panel title="Completed Shipments"><div className="text-sm text-gray-700 dark:text-gray-300">List completed shipments.</div></Panel>; }
-function OrderTracking(){ return <Panel title="Order Tracking"><div className="text-sm text-gray-700 dark:text-gray-300">Real-time tracking & alerts.</div></Panel>; }
-function CreateShipment(){ return <Panel title="Create Shipment"><div className="text-sm text-gray-700 dark:text-gray-300">Create shipment form.</div></Panel>; }
-function DocumentUpload(){ return <Panel title="Document Upload"><div className="text-sm text-gray-700 dark:text-gray-300">Upload docs.</div></Panel>; }
-function PlannedRoutes(){ return <Panel title="Planned Routes"><div className="text-sm text-gray-700 dark:text-gray-300">Planned routes & wagons.</div></Panel>; }
-function CapacityRequests(){ return <Panel title="Capacity Requests"><div className="text-sm text-gray-700 dark:text-gray-300">Capacity requests.</div></Panel>; }
-function Invoices(){ return <Panel title="Invoices"><div className="text-sm text-gray-700 dark:text-gray-300">Invoices list.</div></Panel>; }
-function PaymentStatus(){ return <Panel title="Payment Status"><div className="text-sm text-gray-700 dark:text-gray-300">Open balances.</div></Panel>; }
-function Quotes(){ return <Panel title="Quotes"><div className="text-sm text-gray-700 dark:text-gray-300">Quotes management.</div></Panel>; }
-function CustomsDocs(){ return <Panel title="Customs Documents"><div className="text-sm text-gray-700 dark:text-gray-300">Customs docs per shipment.</div></Panel>; }
-function SafetyCerts(){ return <Panel title="Safety & Compliance"><div className="text-sm text-gray-700 dark:text-gray-300">Compliance certificates.</div></Panel>; }
-function MessageCenter(){ return <Panel title="Message Center"><div className="text-sm text-gray-700 dark:text-gray-300">Secure messaging.</div></Panel>; }
-function Tickets(){ return <Panel title="Tickets"><div className="text-sm text-gray-700 dark:text-gray-300">Tickets & SLAs.</div></Panel>; }
-function HelpCenter(){ return <Panel title="Help Center"><div className="text-sm text-gray-700 dark:text-gray-300">FAQ & guides.</div></Panel>; }
-function ProfileSettings(){ return <Panel title="Profile & Settings"><div className="text-sm text-gray-700 dark:text-gray-300">Profile, notifications, language & locale.</div></Panel>; }
-function LinkedScopes(){ return <Panel title="Linked Offices/Countries"><div className="text-sm text-gray-700 dark:text-gray-300">Linked countries/offices.</div></Panel>; }
+/** (diğer stub’larda da i18n anahtarları kullan) */
+function ShipmentsActive(){  const t = useTranslations('portal.pages'); return <Panel title={t('activeShipments')}><div className="text-sm text-gray-700 dark:text-gray-300">{t('scopedList')}</div></Panel>; }
+function ShipmentsCompleted(){const t = useTranslations('portal.pages'); return <Panel title={t('completedShipments')}><div className="text-sm text-gray-700 dark:text-gray-300">{t('completedList')}</div></Panel>; }
+function OrderTracking(){   const t = useTranslations('portal.pages'); return <Panel title={t('orderTracking')}><div className="text-sm text-gray-700 dark:text-gray-300">{t('realtime')}</div></Panel>; }
+function CreateShipment(){  const t = useTranslations('portal.pages'); return <Panel title={t('createShipment')}><div className="text-sm text-gray-700 dark:text-gray-300">{t('form')}</div></Panel>; }
+function DocumentUpload(){  const t = useTranslations('portal.pages'); return <Panel title={t('documentUpload')}><div className="text-sm text-gray-700 dark:text-gray-300">{t('upload')}</div></Panel>; }
+function PlannedRoutes(){   const t = useTranslations('portal.pages'); return <Panel title={t('plannedRoutes')}><div className="text-sm text-gray-700 dark:text-gray-300">{t('planned')}</div></Panel>; }
+function CapacityRequests(){const t = useTranslations('portal.pages'); return <Panel title={t('capacityRequests')}><div className="text-sm text-gray-700 dark:text-gray-300">{t('capacity')}</div></Panel>; }
+function Invoices(){        const t = useTranslations('portal.pages'); return <Panel title={t('invoices')}><div className="text-sm text-gray-700 dark:text-gray-300">{t('invoicesList')}</div></Panel>; }
+function PaymentStatus(){   const t = useTranslations('portal.pages'); return <Panel title={t('paymentStatus')}><div className="text-sm text-gray-700 dark:text-gray-300">{t('balances')}</div></Panel>; }
+function Quotes(){          const t = useTranslations('portal.pages'); return <Panel title={t('quotes')}><div className="text-sm text-gray-700 dark:text-gray-300">{t('quotesMgmt')}</div></Panel>; }
+function CustomsDocs(){     const t = useTranslations('portal.pages'); return <Panel title={t('customsDocs')}><div className="text-sm text-gray-700 dark:text-gray-300">{t('customsPerShipment')}</div></Panel>; }
+function SafetyCerts(){     const t = useTranslations('portal.pages'); return <Panel title={t('safetyCerts')}><div className="text-sm text-gray-700 dark:text-gray-300">{t('compliance')}</div></Panel>; }
+function MessageCenter(){   const t = useTranslations('portal.pages'); return <Panel title={t('messageCenter')}><div className="text-sm text-gray-700 dark:text-gray-300">{t('secureMessaging')}</div></Panel>; }
+function Tickets(){         const t = useTranslations('portal.pages'); return <Panel title={t('tickets')}><div className="text-sm text-gray-700 dark:text-gray-300">{t('ticketsSla')}</div></Panel>; }
+function HelpCenter(){      const t = useTranslations('portal.pages'); return <Panel title={t('helpCenter')}><div className="text-sm text-gray-700 dark:text-gray-300">{t('faqGuides')}</div></Panel>; }
+function ProfileSettings(){ const t = useTranslations('portal.pages'); return <Panel title={t('profileSettings')}><div className="text-sm text-gray-700 dark:text-gray-300">{t('profileEtc')}</div></Panel>; }
+function LinkedScopes(){    const t = useTranslations('portal.pages'); return <Panel title={t('linkedScopes')}><div className="text-sm text-gray-700 dark:text-gray-300">{t('linkedInfo')}</div></Panel>; }
 
 const ROUTES: Record<keyof typeof Access, React.FC> = {
   dashboard: DashboardView,
@@ -435,9 +441,10 @@ const ROUTES: Record<keyof typeof Access, React.FC> = {
   linked_scopes: LinkedScopes
 };
 
-/* =============================== ROOT ==================================== */
+/** =============================== ROOT ==================================== */
 
-export default function CustomerPortalShell({ showInnerHeader = false }: { showInnerHeader?: boolean }) {
+export default function CustomerPortalShell() {
+  const tb = useTranslations('portal.breadcrumb');
   const [scope, setScope] = useState<Scope>({ companyId: 'c1', countryId: 'ct2', officeId: 'o2' });
   const [activeRoute, setActiveRoute] = useState<keyof typeof Access>('dashboard');
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -465,13 +472,11 @@ export default function CustomerPortalShell({ showInnerHeader = false }: { showI
                 <button className="rounded-md p-2 hover:bg-gray-100 lg:hidden dark:hover:bg-gray-800" onClick={()=>setSidebarOpen(true)}>
                   <Menu className="h-5 w-5" />
                 </button>
-                {!showInnerHeader && (
-                  <div className="hidden text-sm text-gray-500 lg:block">
-                    <span className="font-semibold text-gray-900 dark:text-white">Dashboard</span>
-                    <span className="mx-2 text-gray-300">/</span>
-                    <span>Home</span>
-                  </div>
-                )}
+                <div className="hidden text-sm text-gray-500 lg:block">
+                  <span className="font-semibold text-gray-900 dark:text-white">{tb('section')}</span>
+                  <span className="mx-2 text-gray-300">/</span>
+                  <span>{tb('home')}</span>
+                </div>
               </div>
               <div className="flex items-center gap-3">
                 <ScopeSwitcher />

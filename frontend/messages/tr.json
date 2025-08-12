@@ -91,5 +91,93 @@
       "actions": {
         "create": "Oluştur"
       }
+    },
+    "portal": {
+      "noAccess": "Bu bölüme erişiminiz yok.",
+      "role": "Rol",
+      "company": "Şirket",
+      "country": "Ülke",
+      "office": "Ofis",
+      "breadcrumb": { "section": "Gösterge Paneli", "home": "Ana Sayfa" } ,
+      "menu": {
+        "overview": { "title": "Genel Bakış" },
+        "shipments": { "title": "Gönderimler" },
+        "planning": { "title": "Planlama" },
+        "finance": { "title": "Finans" },
+        "documents": { "title": "Belgeler" },
+        "support": { "title": "Destek" },
+        "account": { "title": "Hesap" },
+        "items": {
+          "dashboard": "Gösterge Paneli",
+          "shipments_active": "Aktif Gönderimler",
+          "shipments_completed": "Tamamlanan Gönderimler",
+          "order_tracking": "Sipariş Takibi",
+          "create_shipment": "Gönderim Oluştur",
+          "document_upload": "Belge Yükle",
+          "planned_routes": "Planlanan Rotalar",
+          "capacity_requests": "Kapasite Talepleri",
+          "invoices": "Faturalar",
+          "payment_status": "Ödeme Durumu",
+          "quotes": "Teklifler",
+          "customs_docs": "Gümrük Belgeleri",
+          "safety_certs": "Güvenlik & Uyum Sertifikaları",
+          "message_center": "Mesaj Merkezi",
+          "tickets": "Biletler",
+          "help_center": "Yardım Merkezi",
+        "profile_settings": "Profil & Ayarlar",
+        "linked_scopes": "Bağlı Ofisler/Ülkeler"
+      }
+    },
+    "dashboard": {
+      "kpi": {
+        "activeShipments": "Aktif Gönderimler",
+        "invoicesDue": "Vadesi Gelen Faturalar",
+        "onTime": "Zamanında Performans"
+      },
+      "recentActivity": "Son Aktivite",
+      "upcomingMilestones": "Gelecek Kilometre Taşları",
+      "calendarPlaceholder": "Takvim / Gantt yer tutucu",
+      "activity": {
+        "sample1": "Gönderim #RF-1042 İzmir'den ayrıldı",
+        "sample2": "Fatura INV-2025-091 oluşturuldu",
+        "sample3": "ETA değişikliği: RF-1031 (Berlin → Rotterdam)"
+      }
+    },
+    "pages": {
+      "activeShipments": "Aktif Gönderimler",
+      "completedShipments": "Tamamlanan Gönderimler",
+      "orderTracking": "Sipariş Takibi",
+      "createShipment": "Gönderim Oluştur",
+      "documentUpload": "Belge Yükle",
+      "plannedRoutes": "Planlanan Rotalar",
+      "capacityRequests": "Kapasite Talepleri",
+      "invoices": "Faturalar",
+      "paymentStatus": "Ödeme Durumu",
+      "quotes": "Teklifler",
+      "customsDocs": "Gümrük Belgeleri",
+      "safetyCerts": "Güvenlik & Uyum Sertifikaları",
+      "messageCenter": "Mesaj Merkezi",
+      "tickets": "Biletler",
+      "helpCenter": "Yardım Merkezi",
+      "profileSettings": "Profil & Ayarlar",
+      "linkedScopes": "Bağlı Ofisler/Ülkeler",
+      "scopedList": "Aktif Gönderim Listesi (kapsamlı).",
+      "completedList": "Tamamlanan Gönderim Listesi.",
+      "realtime": "Gerçek zamanlı izleme & bildirimler.",
+      "form": "Gönderim oluşturma formu.",
+      "upload": "Belgeleri yükle.",
+      "planned": "Planlanan rotalar & vagonlar.",
+      "capacity": "Kapasite talepleri.",
+      "invoicesList": "Fatura listesi.",
+      "balances": "Açık bakiyeler.",
+      "quotesMgmt": "Teklif yönetimi.",
+      "customsPerShipment": "Gönderim başına gümrük belgeleri.",
+      "compliance": "Uyum sertifikaları.",
+      "secureMessaging": "Güvenli mesajlaşma.",
+      "ticketsSla": "Biletler & SLA'lar.",
+      "faqGuides": "SSS & kılavuzlar.",
+      "profileEtc": "Profil, bildirimler, dil & yerel ayarlar.",
+      "linkedInfo": "Bağlı ülkeler/ofisler."
+    }
   }
 }
