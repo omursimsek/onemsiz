@@ -58,6 +58,7 @@ public class AuthController : ControllerBase
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LoginRequest req)
     {
+        Console.WriteLine(req);
         var user = await _db.Users.Include(u => u.Tenant).FirstOrDefaultAsync(u => u.Email == req.Email);
         if (user is null || !user.IsActive) return Unauthorized();
 
@@ -66,6 +67,8 @@ public class AuthController : ControllerBase
 
         if (user.TenantId is Guid && (user.Tenant is null || !user.Tenant.IsActive))
             return Unauthorized();
+
+        
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"] ?? "dev_secret_change_me"));
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);

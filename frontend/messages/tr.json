@@ -9,7 +9,11 @@
     "error": "Ağ hatası"
   },
   "Dashboard": { 
-    "hello": "Hoşgeldiniz" 
+    "hello": "Hoşgeldiniz",
+    "title": "Gösterge Paneli",
+    "securePing": "Güvenli ping",
+    "signedInAs": "Giriş yapan",
+    "logout": "Çıkış" 
   },
   "Admin": { "title": "Yönetici Paneli", "desc": "Tenant’ınızı yönetin." },
   "Super": { "title": "Süper Admin", "desc": "Platform genel ayarlar ve tenantlar." },
@@ -31,7 +35,21 @@
     "active": "Aktif",
     "inactive": "Pasif",
     "deactivate": "Pasifleştir",
-    "activate": "Aktifleştir"
+    "activate": "Aktifleştir",
+    "memberships": {
+      "title": "Kullanıcı üyelikleri",
+      "assign": "Üyelik ata",
+      "user": "Kullanıcı",
+      "tenant": "Tenant",
+      "isDefault": "Varsayılan bağlam olarak işaretle"
+    },
+    "roles": {
+      "TenantUser": "Tenant Kullanıcısı",
+      "TenantAdmin": "Tenant Admin"
+    },
+    "actions": {
+      "create": "Oluştur"
+    }
   },
   "super-tenants": {
     "title": "Tenant yönetimi",
@@ -47,6 +65,29 @@
     "active": "Aktif",
     "inactive": "Pasif",
     "deactivate": "Pasifleştir",
-    "activate": "Aktifleştir"
+    "activate": "Aktifleştir",
+    "hierarchy": {
+        "title": "Tenant hiyerarşisi",
+        "createNode": "Alt/yan tenant oluştur",
+        "tree": "Mevcut ağaç",
+        "empty": "Henüz tenant yok.",
+        "created": "Tenant düğümü oluşturuldu"
+      },
+      "form": {
+        "name": "Ad",
+        "slug": "Kısa ad (slug)",
+        "parent": {
+          "label": "Üst düğüm",
+          "none": "Üst yok"
+        }
+      },
+      "level": {
+        "organization": "Organizasyon",
+        "country": "Ülke",
+        "office": "Ofis"
+      },
+      "actions": {
+        "create": "Oluştur"
+      }
   }
 }

@@ -9,7 +9,11 @@
     "error": "Network error"
   },
   "Dashboard": { 
-    "hello": "Welcome" },
+    "hello": "Welcome",
+    "title": "Dashboard",
+    "securePing": "Secure ping",
+    "signedInAs": "Signed in as",
+    "logout": "Logout"},
   "Admin": { "title": "Admin Panel", "desc": "Manage your tenant." },
   "Super": { "title": "Super Admin", "desc": "Platform-wide configuration & tenants." },
   "Common": { "logout": "Logout", "login": "Login" },
@@ -30,7 +34,21 @@
     "active": "Active",
     "inactive": "Inactive",
     "deactivate": "Deactivate",
-    "activate": "Activate"
+    "activate": "Activate",
+    "memberships": {
+      "title": "User memberships",
+      "assign": "Assign membership",
+      "user": "User",
+      "tenant": "Tenant",
+      "isDefault": "Set as default context"
+    },
+    "roles": {
+      "TenantUser": "Tenant User",
+      "TenantAdmin": "Tenant Admin"
+    },
+    "actions": {
+      "create": "Create"
+    }
   },
   "super-tenants": {
     "title": "Tenant management",
@@ -46,6 +64,29 @@
     "active": "Active",
     "inactive": "Inactive",
     "deactivate": "Deactivate",
-    "activate": "Activate"
+    "activate": "Activate",
+    "hierarchy": {
+      "title": "Tenant hierarchy",
+      "createNode": "Create child/peer tenant",
+      "tree": "Current tree",
+      "empty": "No tenants yet.",
+      "created": "Tenant node created"
+    },
+    "form": {
+      "name": "Name",
+      "slug": "Slug",
+      "parent": {
+        "label": "Parent",
+        "none": "No parent"
+      }
+    },
+    "level": {
+      "organization": "Organization",
+      "country": "Country",
+      "office": "Office"
+    },
+    "actions": {
+      "create": "Create"
+    }
   }
 }

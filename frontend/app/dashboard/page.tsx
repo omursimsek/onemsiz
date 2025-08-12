@@ -1,11 +1,15 @@
 
 import {cookies} from 'next/headers';
 import {getTranslations} from 'next-intl/server';
+import Toast from '/components/Toast';
 
 export default async function DashboardPage(){
   const t = await getTranslations('Dashboard');
   const cookieStore = await cookies();
   const token = cookieStore.get('token')?.value;
+
+  const flashRaw = (await cookies()).get('flash')?.value || null;
+  const flash = flashRaw ? JSON.parse(flashRaw) : null;
 
   // Basit sağlık kontrolü: backend korumalı endpoint
   let securePing: string | null = null;
@@ -24,12 +28,13 @@ export default async function DashboardPage(){
 
   return (
     <main style={{padding:24}}>
-      <h1>Dashboard</h1>
+      <Toast initial={flash} />
+      <h1>{t('title')}</h1>
       <h2>{t('hello')}</h2>
-      <p>Secure ping: {securePing ?? 'unauthorized'}</p>
-      {user && <p>Signed in as: <b>{user.email}</b> ({user.role})</p>}
+      <p>{t('securePing')}: {securePing ?? 'unauthorized'}</p>
+      {user && <p>{t('signedInAs')}: <b>{user.email}</b> ({user.role})</p>}
       <form action="/api/session/logout" method="post" style={{marginTop:16}}>
-        <button type="submit">Logout</button>
+        <button type="submit">{t('logout')}</button>
       </form>
     </main>
   );

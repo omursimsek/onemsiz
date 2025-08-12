@@ -1,6 +1,7 @@
 import {NextResponse} from 'next/server';
 const API_BASE = process.env.API_BASE_INTERNAL || 'http://api:8080';
 const PREFIX = process.env.APP_COOKIE_PREFIX || 'b2b_';
+import {setFlash} from '/lib/flash';
 
 function targetByRole(role?: string|null){
   if (role === 'SuperAdmin') return '/super';
@@ -32,9 +33,15 @@ export async function POST(req: Request) {
     for (const name of [PREFIX+'token', PREFIX+'user', 'token', 'user']) {
       res.cookies.set(name, '', {path:'/', expires: new Date(0)});
     }
+    if (backendRes.status === 401) {
+      setFlash(res, { type: 'error', message: 'Invalid email or password' });
+    } else {
+      setFlash(res, { type: 'error', message: 'Login failed. Please try again.' });
+    }
     return res;
   }
 
+  
   const data = await backendRes.json(); // { token, email, role, tenantId }
   const dest = targetByRole(data.role);
   const res = NextResponse.redirect(new URL(dest, req.url), {status: 303});
@@ -49,6 +56,10 @@ export async function POST(req: Request) {
   // Eski isimleri de (varsa) sil
   res.cookies.set('token', '', {path:'/', expires:new Date(0)});
   res.cookies.set('user',  '', {path:'/', expires:new Date(0)});
+
+  // Başarılı giriş mesajı
+  setFlash(res, { type: 'success', message: 'Login successful!' });
+
 
   return res;
 }

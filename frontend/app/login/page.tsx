@@ -2,6 +2,7 @@ import {useTranslations} from 'next-intl';
 import {getTranslations} from 'next-intl/server';
 import {cookies} from 'next/headers';
 import {redirect} from 'next/navigation';
+import Toast from '/components/Toast';
 
 export default async function LoginPage(){
   // Eğer zaten girişliyse, role hedefine atla (isteğe bağlı güvenlik)
@@ -12,9 +13,12 @@ export default async function LoginPage(){
   }
 
   const t = await getTranslations('Login');
+  const flashRaw = (await cookies()).get('flash')?.value || null;
+  const flash = flashRaw ? JSON.parse(flashRaw) : null;
 
   return (
     <main style={{maxWidth:360,margin:'64px auto',padding:24,border:'1px solid #eee',borderRadius:12}}>
+      <Toast initial={flash} />
       <h1 style={{marginBottom:16}}>{t('title')}</h1>
       <form action="/api/session/login" method="post">
         <div style={{display:'flex',flexDirection:'column',gap:12}}>

@@ -12,6 +12,7 @@ using Microsoft.Extensions.FileProviders;
 using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // EF Core - PostgreSQL
@@ -72,6 +73,13 @@ builder.Services.AddAuthorization(options =>
 
     options.AddPolicy("TenantAdminOnly", p =>
         p.RequireRole(nameof(AppRole.TenantAdmin)));
+
+    options.AddPolicy("TenantScope", p => p.RequireAssertion(ctx =>
+        ctx.User.HasClaim(c => c.Type == "tpath") &&
+       (ctx.User.IsInRole(nameof(AppRole.TenantAdmin)) ||
+        ctx.User.IsInRole(nameof(AppRole.TenantUser)))
+    ));
+    options.AddPolicy("PlatformOnly", p => p.RequireRole(nameof(AppRole.SuperAdmin), nameof(AppRole.Staff)));
 });
 
 // JWT
@@ -88,6 +96,8 @@ builder.Services.AddAuthentication(options =>
 }).AddJwtBearer(options =>
 {
     options.MapInboundClaims = false;
+    options.TokenValidationParameters.NameClaimType = JwtRegisteredClaimNames.Sub;
+    options.TokenValidationParameters.RoleClaimType = ClaimTypes.Role;
     
     options.TokenValidationParameters = new TokenValidationParameters
     {
@@ -145,6 +155,8 @@ using (var scope = app.Services.CreateScope())
     //db.Database.EnsureCreated();
     db.Database.Migrate();
 
+    Console.WriteLine($"{AppRole.SuperAdmin}");
+
     if (!db.Users.Any(u => u.Role == AppRole.SuperAdmin))
     {
         var email = builder.Configuration["Seed:SuperAdminEmail"] ?? "superadmin@example.com";
@@ -153,7 +165,7 @@ using (var scope = app.Services.CreateScope())
         {
             Email = email,
             PasswordHash = BCrypt.Net.BCrypt.HashPassword(pass),
-            Role = AppRole.SuperAdmin
+            Role = AppRole.SuperAdmin,
         });
         db.SaveChanges();
     }

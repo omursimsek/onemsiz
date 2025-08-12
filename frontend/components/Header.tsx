@@ -25,6 +25,7 @@ async function getTenantInfo() {
   if (!hasTenant) return { logoUrl: null, name: null, authenticated: true };
 
   // SSR fetch – ilk render'da doğru logo
+  console.log(`${API_BASE}/api/tenant/me`);
   const res = await fetch(`${API_BASE}/api/tenant/me`, {
     headers: { Authorization: `Bearer ${token}` },
     cache: 'no-store'
