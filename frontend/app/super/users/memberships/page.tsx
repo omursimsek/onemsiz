@@ -11,14 +11,16 @@ async function fetchUsers(token: string): Promise<User[]> {
   const r = await fetch(`${API_BASE}/api/platform/users`, {
     headers: { Authorization: `Bearer ${token}` }, cache:'no-store'
   });
-  if (!r.ok) return []; return r.json();
+  if (!r.ok) return [];
+  return r.json();
 }
 
 async function fetchTree(token: string): Promise<Node[]> {
   const r = await fetch(`${API_BASE}/api/platform/tenants/tree`, {
     headers: { Authorization: `Bearer ${token}` }, cache:'no-store'
   });
-  if (!r.ok) return []; return r.json();
+  if (!r.ok) return [];
+  return r.json();
 }
 
 export default async function MembershipsPage(){
@@ -27,28 +29,93 @@ export default async function MembershipsPage(){
   const [users, nodes] = token ? await Promise.all([fetchUsers(token), fetchTree(token)]) : [[],[]];
 
   return (
-    <main style={{padding:24}}>
-      <h1 style={{marginBottom:16}}>{t('memberships.title')}</h1>
+    <main className="p-6">
+      <h1 className="mb-4 text-2xl font-semibold text-gray-900">{t('memberships.title')}</h1>
 
-      <section style={{marginBottom:24, border:'1px solid #eee', borderRadius:12, padding:16}}>
-        <h3>{t('memberships.assign')}</h3>
-        <form action="/api/super/users/memberships/assign" method="post" className="grid-form">
-          <select name="userId" required>
-            <option value="">{t('memberships.user')}</option>
-            {users.map(u => <option key={u.id} value={u.id}>{u.email}</option>)}
-          </select>
-          <select name="tenantId" required>
-            <option value="">{t('memberships.tenant')}</option>
-            {nodes.map(n => <option key={n.id} value={n.id}>{n.name} ({n.slug}) — L{n.level}</option>)}
-          </select>
-          <select name="role" required defaultValue="TenantUser">
-            <option value="TenantUser">{t('roles.TenantUser')}</option>
-            <option value="TenantAdmin">{t('roles.TenantAdmin')}</option>
-          </select>
-          <label style={{display:'flex', alignItems:'center', gap:8}}>
-            <input type="checkbox" name="isDefault" /> {t('memberships.isDefault')}
-          </label>
-          <button type="submit" className="btn" style={{gridColumn:'1 / -1'}}>{t('actions.create')}</button>
+      <section className="mb-6 rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
+        <h3 className="mb-3 text-sm font-semibold text-gray-900">{t('memberships.assign')}</h3>
+
+        <form
+          action="/api/super/users/memberships/assign"
+          method="post"
+          className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3"
+        >
+          {/* User */}
+          <div>
+            <label htmlFor="userId" className="mb-1 block text-sm font-medium text-gray-700">
+              {t('memberships.user')}
+            </label>
+            <select
+              id="userId"
+              name="userId"
+              required
+              className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:border-gray-400 focus:ring-2 focus:ring-gray-200"
+            >
+              <option value="">{t('memberships.user')}</option>
+              {users.map(u => (
+                <option key={u.id} value={u.id}>{u.email}</option>
+              ))}
+            </select>
+          </div>
+
+          {/* Tenant/Node */}
+          <div>
+            <label htmlFor="tenantId" className="mb-1 block text-sm font-medium text-gray-700">
+              {t('memberships.tenant')}
+            </label>
+            <select
+              id="tenantId"
+              name="tenantId"
+              required
+              className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:border-gray-400 focus:ring-2 focus:ring-gray-200"
+            >
+              <option value="">{t('memberships.tenant')}</option>
+              {nodes.map(n => (
+                <option key={n.id} value={n.id}>
+                  {n.name} ({n.slug}) — L{n.level}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Role */}
+          <div>
+            <label htmlFor="role" className="mb-1 block text-sm font-medium text-gray-700">
+              {t('role') ?? 'Role'}
+            </label>
+            <select
+              id="role"
+              name="role"
+              required
+              defaultValue="TenantUser"
+              className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:border-gray-400 focus:ring-2 focus:ring-gray-200"
+            >
+              <option value="TenantUser">{t('roles.TenantUser')}</option>
+              <option value="TenantAdmin">{t('roles.TenantAdmin')}</option>
+            </select>
+          </div>
+
+          {/* IsDefault */}
+          <div className="sm:col-span-2 lg:col-span-3">
+            <label className="inline-flex items-center gap-2 text-sm text-gray-700">
+              <input
+                type="checkbox"
+                name="isDefault"
+                className="h-4 w-4 rounded border-gray-300 text-gray-900 focus:ring-2 focus:ring-gray-200"
+              />
+              {t('memberships.isDefault')}
+            </label>
+          </div>
+
+          {/* Submit */}
+          <div className="sm:col-span-2 lg:col-span-3">
+            <button
+              type="submit"
+              className="flex items-center justify-center min-w-[140px] rounded-lg bg-gray-900 px-4 py-2.5 text-sm font-medium text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-300"
+            >
+              {t('actions.create')}
+            </button>
+          </div>
         </form>
       </section>
     </main>

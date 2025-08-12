@@ -1,4 +1,4 @@
-
+/*
 import {cookies} from 'next/headers';
 import {getTranslations} from 'next-intl/server';
 import Toast from '/components/Toast';
@@ -20,7 +20,7 @@ export default async function DashboardPage(){
         cache: 'no-store'
       });
       securePing = res.ok ? (await res.json()).message : null;
-    }catch { /* yoksay */ }
+    }catch { /* yoksay *//* }
   }
 
   const userCookie = cookieStore.get('user')?.value;
@@ -36,6 +36,19 @@ export default async function DashboardPage(){
       <form action="/api/session/logout" method="post" style={{marginTop:16}}>
         <button type="submit">{t('logout')}</button>
       </form>
+    </main>
+  );
+}
+*/
+
+// app/dashboard/page.tsx
+import CustomerPortalShell from '/components/portal/CustomerPortalShell';
+
+export default async function DashboardPage() {
+  // Header zaten global (server) olduğu için iç header’ı kapatıyoruz
+  return (
+    <main className="p-4">
+      <CustomerPortalShell showInnerHeader={false} />
     </main>
   );
 }

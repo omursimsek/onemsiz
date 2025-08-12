@@ -77,11 +77,13 @@
         "name": "Ad",
         "slug": "Kısa ad (slug)",
         "parent": {
+          "title": "Üst",
           "label": "Üst düğüm",
           "none": "Üst yok"
         }
       },
       "level": {
+        "title": "Seviye",
         "organization": "Organizasyon",
         "country": "Ülke",
         "office": "Ofis"

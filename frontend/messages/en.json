@@ -76,11 +76,13 @@
       "name": "Name",
       "slug": "Slug",
       "parent": {
+        "title": "Parent",
         "label": "Parent",
         "none": "No parent"
       }
     },
     "level": {
+      "title": "Level",
       "organization": "Organization",
       "country": "Country",
       "office": "Office"

@@ -1,59 +1,117 @@
 'use client';
 
-const AppRole = {
-  SuperAdmin: 0,
-  Staff: 1,
-  TenantAdmin: 2,
-  TenantUser: 3
-} as const;
+import {useState} from 'react';
 
 type TenantRow = { id:string; name:string; slug:string; isActive:boolean; createdAt:string };
 
-export default function TenantRoleForm({tenants}:{tenants:TenantRow[]}){
-  const isTenantRole = (roleNum: number) =>
-    roleNum === AppRole.TenantAdmin || roleNum === AppRole.TenantUser;
+// Uyumlu roller (enum string’leri)
+const ROLE_OPTIONS = [
+  { value: 'TenantUser',  label: 'TenantUser'  },
+  { value: 'TenantAdmin', label: 'TenantAdmin' },
+  { value: 'Staff',       label: 'Staff'       },
+  { value: 'SuperAdmin',  label: 'SuperAdmin'  }
+];
 
-  function onRoleChange(e: React.ChangeEvent<HTMLSelectElement>) {
-    const val = Number(e.target.value);
-    const req = isTenantRole(val);
-    const sel = document.getElementById('tenantSelect') as HTMLSelectElement | null;
-    if (sel){
-      sel.required = req;
-      sel.disabled = !req;
-      if (!req) sel.value = ''; // platform rolüne geçince seçim temizlensin
-    }
-  }
+function isTenantRole(role: string){
+  return role === 'TenantUser' || role === 'TenantAdmin';
+}
+
+export default function TenantRoleForm({tenants}:{tenants:TenantRow[]}) {
+  const [role, setRole] = useState<string>('TenantUser');
+
+  const tenantRequired = isTenantRole(role);
+  const tenantDisabled = !tenantRequired;
 
   return (
-    <form action="/api/super/users/create" method="post"
-          style={{display:'grid', gridTemplateColumns:'1fr 1fr 1fr 1fr', gap:12}}>
-      <input name="email" type="email" placeholder="Email" required />
-      <input name="password" type="text" placeholder="Geçici şifre" required />
+    <form
+      action="/api/super/users/create"
+      method="post"
+      className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4"
+    >
+      {/* Email */}
+      <div className="col-span-1">
+        <label htmlFor="email" className="mb-1 block text-sm font-medium text-gray-700">
+          Email
+        </label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          required
+          placeholder="user@company.com"
+          className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 outline-none placeholder:text-gray-400 focus:border-gray-400 focus:ring-2 focus:ring-gray-200"
+        />
+      </div>
 
-      {/* ENUM: value’lar sayısal */}
-      <select name="role" id="roleSelect"
-              defaultValue={String(AppRole.TenantUser)}
-              onChange={onRoleChange}>
-        <option value={AppRole.TenantUser}>TenantUser</option>
-        <option value={AppRole.TenantAdmin}>TenantAdmin</option>
-        <option value={AppRole.Staff}>Staff</option>
-        <option value={AppRole.SuperAdmin}>SuperAdmin</option>
-      </select>
+      {/* Geçici şifre */}
+      <div className="col-span-1">
+        <label htmlFor="password" className="mb-1 block text-sm font-medium text-gray-700">
+          Geçici şifre
+        </label>
+        <input
+          id="password"
+          name="password"
+          type="text"
+          required
+          placeholder="Geçici şifre"
+          className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 outline-none placeholder:text-gray-400 focus:border-gray-400 focus:ring-2 focus:ring-gray-200"
+        />
+      </div>
 
-      <select name="tenantId" id="tenantSelect" defaultValue=""
-              required aria-label="Tenant">
-        <option value="" disabled>Tenant seçin</option>
-        {tenants.map(t => (
-          <option key={t.id} value={t.id} disabled={!t.isActive}>
-            {t.name} ({t.slug}){t.isActive ? '' : ' — pasif'}
-          </option>
-        ))}
-      </select>
+      {/* Rol */}
+      <div className="col-span-1">
+        <label htmlFor="role" className="mb-1 block text-sm font-medium text-gray-700">
+          Rol
+        </label>
+        <select
+          id="role"
+          name="role"
+          defaultValue="TenantUser"
+          onChange={(e)=> setRole(e.target.value)}
+          className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:border-gray-400 focus:ring-2 focus:ring-gray-200"
+        >
+          {ROLE_OPTIONS.map(r => <option key={r.value} value={r.value}>{r.label}</option>)}
+        </select>
+        <p className="mt-1 text-xs text-gray-500">
+          TenantUser / TenantAdmin rollerinde tenant seçimi zorunludur.
+        </p>
+      </div>
 
-      <button type="submit" style={{gridColumn:'1 / -1'}}>Oluştur</button>
-      <p style={{gridColumn:'1 / -1', fontSize:12, color:'#64748b', margin:0}}>
-        Not: Staff/SuperAdmin rollerinde tenant seçimi gerekmez ve alan otomatik devre dışı kalır.
-      </p>
+      {/* Tenant */}
+      <div className="col-span-1">
+        <label htmlFor="tenantId" className="mb-1 block text-sm font-medium text-gray-700">
+          Tenant
+        </label>
+        <select
+          id="tenantId"
+          name="tenantId"
+          required={tenantRequired}
+          disabled={tenantDisabled}
+          defaultValue=""
+          className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-400 focus:border-gray-400 focus:ring-2 focus:ring-gray-200"
+          aria-label="Tenant"
+        >
+          <option value="" disabled>Tenant seçin</option>
+          {tenants.map(t => (
+            <option key={t.id} value={t.id} disabled={!t.isActive}>
+              {t.name} ({t.slug}){t.isActive ? '' : ' — pasif'}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      {/* Aksiyon */}
+      <div className="col-span-1 md:col-span-2 lg:col-span-4">
+        <button
+          type="submit"
+          className="flex items-center justify-center min-w-[140px] rounded-lg bg-gray-900 px-4 py-2.5 text-sm font-medium text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-300"
+        >
+          Oluştur
+        </button>
+        <p className="mt-2 text-xs text-gray-500">
+          Not: Staff/SuperAdmin rollerinde tenant seçimi gerekmez ve alan devre dışı bırakılır.
+        </p>
+      </div>
     </form>
   );
 }
