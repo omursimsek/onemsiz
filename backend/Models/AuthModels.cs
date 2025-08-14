@@ -1,11 +1,14 @@
+/*
 using System.ComponentModel.DataAnnotations;
+using Backend.Domain.Enums;
+using Backend.Domain.Entities;
 
 namespace Backend.Models;
+*/
+//public enum AppRole { SuperAdmin = 0, Staff = 1, TenantAdmin = 2, TenantUser = 3 }
 
-public enum AppRole { SuperAdmin = 0, Staff = 1, TenantAdmin = 2, TenantUser = 3 }
-
-public enum TenantLevel { Organization = 0, Country = 1, Office = 2 }
-
+//public enum TenantLevel { Organization = 0, Country = 1, Office = 2 }
+/*
 public class Tenant
 {
     public Guid Id { get; set; } = Guid.NewGuid();
@@ -31,7 +34,8 @@ public class Tenant
     [MaxLength(512)]
     public string? LogoPath { get; set; } // wwwroot içindeki göreli yol: /tenants/{id}/logo.png
 }
-
+*/
+/*
 // Kullanıcının belirli bir node üzerindeki rolü
 public class UserTenantMembership
 {
@@ -44,7 +48,9 @@ public class UserTenantMembership
     public bool IsDefault { get; set; } = false;
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 }
+*/
 
+/*
 public class AppUser
 {
     public Guid Id { get; set; } = Guid.NewGuid();
@@ -59,8 +65,9 @@ public class AppUser
     public bool IsActive { get; set; } = true;
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 }
+*/
 
 // DTOs
-public record RegisterRequest(string Email, string Password, AppRole Role, Guid? TenantId);
-public record LoginRequest(string Email, string Password);
-public record LoginResponse(string Token, string Email, string Role, Guid? TenantId);
+//public record RegisterRequest(string Email, string Password, AppRole Role, Guid? TenantId);
+//public record LoginRequest(string Email, string Password);
+//public record LoginResponse(string Token, string Email, string Role, Guid? TenantId);

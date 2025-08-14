@@ -1,8 +1,47 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Backend.Application.DTOs.Tenants;
+using Backend.Application.Interfaces;
+
+namespace Backend.Controllers;
+
+[ApiController]
+[Route("api/platform/tenants")]
+[Authorize(Policy = "PlatformOnly")]
+public class PlatformTenantsHierarchyController : ControllerBase
+{
+    private readonly ITenantHierarchyService _svc;
+    public PlatformTenantsHierarchyController(ITenantHierarchyService svc) => _svc = svc;
+
+    [HttpPost("node")]
+    public async Task<IActionResult> CreateNode([FromBody] CreateTenantNodeRequest dto, CancellationToken ct)
+    {
+        var res = await _svc.CreateNodeAsync(dto, ct);
+        if (!res.Success)
+            return StatusCode(res.StatusCode ?? 400, new { error = res.Error });
+        return Ok(res.Value);
+    }
+
+    [HttpGet("tree")]
+    public async Task<IActionResult> GetTree(CancellationToken ct)
+    {
+        var res = await _svc.GetTreeAsync(ct);
+        if (!res.Success)
+            return StatusCode(res.StatusCode ?? 400, new { error = res.Error });
+        return Ok(res.Value);
+    }
+}
+
+/*
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Backend.Models;
-using Backend.Services;
+//using Backend.Models;
+//using Backend.Services;
+using Backend.Domain.Enums;
+using Backend.Domain.Entities;
+using Backend.Domain.ValueObjects;
+using Backend.Infrastructure.Data;
 
 namespace Backend.Controllers;
 
@@ -22,7 +61,7 @@ public class PlatformTenantsHierarchyController : ControllerBase
         if (string.IsNullOrWhiteSpace(dto.Name) || string.IsNullOrWhiteSpace(dto.Slug))
             return BadRequest(new { message = "Name and Slug are required" });
 
-        var slug = TenantPathHelper.Slugify(dto.Slug);
+        var slug = TenantPath.Slugify(dto.Slug);
         var exists = await _db.Tenants.AnyAsync(t => t.Slug == slug);
         if (exists) return Conflict(new { message = "Slug already exists" });
 
@@ -41,7 +80,7 @@ public class PlatformTenantsHierarchyController : ControllerBase
             Level = (TenantLevel)dto.Level,
             ParentId = dto.ParentId,
             DefaultCulture = string.IsNullOrWhiteSpace(dto.DefaultCulture) ? "en" : dto.DefaultCulture!,
-            Path = TenantPathHelper.BuildPath(parentPath, slug)
+            Path = TenantPath.BuildPath(parentPath, slug)
         };
         _db.Tenants.Add(t);
         await _db.SaveChangesAsync();
@@ -60,3 +99,4 @@ public class PlatformTenantsHierarchyController : ControllerBase
         return Ok(nodes);
     }
 }
+*/

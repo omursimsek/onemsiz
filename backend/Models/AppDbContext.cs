@@ -1,4 +1,6 @@
+/*
 using Microsoft.EntityFrameworkCore;
+using Backend.Domain.Entities;
 
 namespace Backend.Models;
 
@@ -48,7 +50,7 @@ public class AppDbContext : DbContext
         b.Entity<AppUser>()
         .Property(u => u.Role)
         .HasConversion<string>();*/
-
+/*
         base.OnModelCreating(b);
     }
 
@@ -60,3 +62,4 @@ public class AppDbContext : DbContext
         return null;
     }
 }
+*/

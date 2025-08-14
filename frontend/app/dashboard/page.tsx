@@ -42,12 +42,19 @@ export default async function DashboardPage(){
 */
 
 // app/dashboard/page.tsx
+import {cookies} from 'next/headers';
+import {getTranslations} from 'next-intl/server';
 import CustomerPortalShell from '/components/portal/CustomerPortalShell';
+import Toast from '/components/Toast';
+
+const flashRaw = (await cookies()).get('flash')?.value || null;
+const flash = flashRaw ? JSON.parse(flashRaw) : null;
 
 export default async function DashboardPage() {
   // Header zaten global (server) olduğu için iç header’ı kapatıyoruz
   return (
     <main className="p-4">
+      <Toast initial={flash} />
       <CustomerPortalShell showInnerHeader={false} />
     </main>
   );

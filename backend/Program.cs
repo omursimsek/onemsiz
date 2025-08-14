@@ -7,10 +7,14 @@ using System.Globalization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
-using Backend.Models;
+//using Backend.Models;
 using Microsoft.Extensions.FileProviders;
 using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
+using Backend.Domain.Enums;
+using Backend.Domain.Entities;
+using Backend.Infrastructure.Data;
+using Backend.Infrastructure.Extensions;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,6 +25,8 @@ var conn = builder.Configuration.GetConnectionString("DefaultConnection")
 builder.Services.AddDbContext<AppDbContext>(opt => opt.UseNpgsql(conn));
 
 builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddAppServices();
 
 // Localization
 var supportedCultures = (builder.Configuration["SupportedCultures"] ?? "en,tr").Split(',');
