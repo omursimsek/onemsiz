@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="c28261df-f4a3-4a61-8683-13cf617ee278" name="@c4122b95be17 2025-08-15 08:39:49" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2025-08-15T08:39:49.1311846+00:00" queuing="2025-08-15T08:39:49.1311846+00:00" start="2025-08-15T08:39:48.8336193+00:00" finish="2025-08-15T08:39:49.9558671+00:00" />
+  <TestSettings name="default" id="9ed3e59f-500e-4f4a-b543-dbe09c6848c4">
+    <Deployment runDeploymentRoot="_c4122b95be17_2025-08-15_08_39_49" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="295cce1d-a34f-47c7-9096-add3af77a6a0" testId="87afd9a9-3a76-05dc-5136-4351a04ca482" testName="Backend.Tests.Application.Common.ResultTests.OkT_ShouldCarryValue" computerName="c4122b95be17" duration="00:00:00.0002980" startTime="2025-08-15T08:39:49.1044342+00:00" endTime="2025-08-15T08:39:49.1044772+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="295cce1d-a34f-47c7-9096-add3af77a6a0" />
+    <UnitTestResult executionId="4a23f9c5-c266-428b-8652-7345c418d74e" testId="7f081e1d-6a58-3e76-9ab9-4ebbc6f29cbf" testName="Backend.Tests.Application.Services.TenantServiceTests.CreateAsync_Fails_WhenNameOrSlugMissing" computerName="c4122b95be17" duration="00:00:00.0003448" startTime="2025-08-15T08:39:49.4404902+00:00" endTime="2025-08-15T08:39:49.4407396+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4a23f9c5-c266-428b-8652-7345c418d74e" />
+    <UnitTestResult executionId="b287458a-a512-43b2-8bdc-5204383600a6" testId="0b3e4e71-0238-4296-85eb-e5ab771642a8" testName="Backend.Tests.Application.Services.TenantPublicServiceTests.GetCurrentTenantAsync_Fails_WhenNotFoundOrInactive" computerName="c4122b95be17" duration="00:00:00.2715116" startTime="2025-08-15T08:39:49.0960924+00:00" endTime="2025-08-15T08:39:49.3696686+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b287458a-a512-43b2-8bdc-5204383600a6" />
+    <UnitTestResult executionId="45436ebe-400b-42ae-a8fc-8b0e7c39159d" testId="7b607913-2dc2-8669-91fa-0b8c344313f1" testName="Backend.Tests.Application.Common.ResultTests.Fail_ShouldContainErrorAndStatus" computerName="c4122b95be17" duration="00:00:00.0015525" startTime="2025-08-15T08:39:49.1045568+00:00" endTime="2025-08-15T08:39:49.1045877+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="45436ebe-400b-42ae-a8fc-8b0e7c39159d" />
+    <UnitTestResult executionId="f56f2c8b-21ed-4d6c-b3f3-15d2ae2c6b38" testId="4a8bd80c-6c50-040b-b2ee-c54bffc15279" testName="Backend.Tests.UnitTest1.Test1" computerName="c4122b95be17" duration="00:00:00.0010551" startTime="2025-08-15T08:39:49.0960662+00:00" endTime="2025-08-15T08:39:49.0997676+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f56f2c8b-21ed-4d6c-b3f3-15d2ae2c6b38" />
+    <UnitTestResult executionId="09f351f8-d61f-4cb6-b0df-f1e353c49b90" testId="7c8cc0ec-8308-6d27-6faf-a5ec55afaad0" testName="Backend.Tests.Application.Services.TenantHierarchyServiceTests.CreateNodeAsync_Fails_WhenSlugExists" computerName="c4122b95be17" duration="00:00:00.0011978" startTime="2025-08-15T08:39:49.4030242+00:00" endTime="2025-08-15T08:39:49.4030895+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="09f351f8-d61f-4cb6-b0df-f1e353c49b90" />
+    <UnitTestResult executionId="98f23344-8325-431c-86c0-9d53fe332999" testId="024786ea-bb0b-b19e-9893-7d2d49fc7763" testName="Backend.Tests.Application.Services.TenantServiceTests.ToggleAsync_Succeeds" computerName="c4122b95be17" duration="00:00:00.0020323" startTime="2025-08-15T08:39:49.4356595+00:00" endTime="2025-08-15T08:39:49.4374978+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="98f23344-8325-431c-86c0-9d53fe332999" />
+    <UnitTestResult executionId="4437de9d-c01d-4224-b991-98df72d02f9d" testId="a3cc466e-448c-e81e-fbe1-30c54c91504e" testName="Backend.Tests.Application.Services.TenantHierarchyServiceTests.CreateNodeAsync_Succeeds_ForValidRootNode" computerName="c4122b95be17" duration="00:00:00.0012855" startTime="2025-08-15T08:39:49.4032346+00:00" endTime="2025-08-15T08:39:49.4032946+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4437de9d-c01d-4224-b991-98df72d02f9d" />
+    <UnitTestResult executionId="9ad2e52a-baf7-47bb-8f60-60ebb6caccd6" testId="838d2943-bac4-47c8-047d-cf1cda0b9034" testName="Backend.Tests.Application.Services.UserMembershipServiceTests.AssignAsync_Fails_WhenTenantInactive" computerName="c4122b95be17" duration="00:00:00.1965733" startTime="2025-08-15T08:39:49.6089805+00:00" endTime="2025-08-15T08:39:49.8046770+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9ad2e52a-baf7-47bb-8f60-60ebb6caccd6" />
+    <UnitTestResult executionId="0d269430-79f0-4f0c-b796-007f276a1fb3" testId="902e1281-b133-ca94-1926-d38e5bbe399d" testName="Backend.Tests.Application.Services.TenantHierarchyServiceTests.CreateNodeAsync_Fails_WhenRootNodeLevelNotOrganization" computerName="c4122b95be17" duration="00:00:00.0008600" startTime="2025-08-15T08:39:49.4038544+00:00" endTime="2025-08-15T08:39:49.4045701+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0d269430-79f0-4f0c-b796-007f276a1fb3" />
+    <UnitTestResult executionId="42f4573b-e145-47ba-a9a9-613c910a1ae6" testId="2da42b9a-72bb-4b25-9b0b-01ad5725aabc" testName="Backend.Tests.Application.Services.TenantHierarchyServiceTests.CreateNodeAsync_Succeeds_ForValidChild" computerName="c4122b95be17" duration="00:00:00.0114077" startTime="2025-08-15T08:39:49.3894212+00:00" endTime="2025-08-15T08:39:49.4028135+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="42f4573b-e145-47ba-a9a9-613c910a1ae6" />
+    <UnitTestResult executionId="f089476e-c7ed-4e5f-b30f-db8db0b2e091" testId="9e12ea75-cbd6-c870-5cbc-255b6a0bb296" testName="Backend.Tests.Application.Services.TenantServiceTests.UploadLogoAsync_Fails_WhenTenantNotFound" computerName="c4122b95be17" duration="00:00:00.0135036" startTime="2025-08-15T08:39:49.4036309+00:00" endTime="2025-08-15T08:39:49.4170632+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f089476e-c7ed-4e5f-b30f-db8db0b2e091" />
+    <UnitTestResult executionId="7a3f260e-1304-4951-8ca6-b23376e7b77c" testId="a3815c71-aa9d-5791-b0c8-47317dbfd503" testName="Backend.Tests.Application.Services.TenantHierarchyServiceTests.CreateNodeAsync_Fails_WhenParentNotFound" computerName="c4122b95be17" duration="00:00:00.0008159" startTime="2025-08-15T08:39:49.4053018+00:00" endTime="2025-08-15T08:39:49.4060145+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7a3f260e-1304-4951-8ca6-b23376e7b77c" />
+    <UnitTestResult executionId="7e3df3a0-54a9-44ba-a5ee-100dc04f99b3" testId="960bfbc9-f976-c6d1-9ede-34a2f7431ece" testName="Backend.Tests.Application.Services.UserServiceTests.ListAsync_FiltersByTenant" computerName="c4122b95be17" duration="00:00:00.4963508" startTime="2025-08-15T08:39:49.0960508+00:00" endTime="2025-08-15T08:39:49.5943573+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7e3df3a0-54a9-44ba-a5ee-100dc04f99b3" />
+    <UnitTestResult executionId="12f19703-045f-4ed0-b669-f4d7c6fc6ec6" testId="3f3095e8-455c-9033-a44f-fd001bf06c95" testName="Backend.Tests.Application.Services.AuthServiceTests.RegisterAsync_Fails_WhenTenantNotFound" computerName="c4122b95be17" duration="00:00:00.0066381" startTime="2025-08-15T08:39:49.3825841+00:00" endTime="2025-08-15T08:39:49.3889932+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="12f19703-045f-4ed0-b669-f4d7c6fc6ec6" />
+    <UnitTestResult executionId="e17f241b-698b-4a0d-8f6f-712aab32bf19" testId="0aa6adfc-662a-ae78-4c2c-2e6af6dad68c" testName="Backend.Tests.Application.Services.TenantServiceTests.CreateAsync_Succeeds_WithValidInput" computerName="c4122b95be17" duration="00:00:00.0050298" startTime="2025-08-15T08:39:49.4003127+00:00" endTime="2025-08-15T08:39:49.4034932+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e17f241b-698b-4a0d-8f6f-712aab32bf19" />
+    <UnitTestResult executionId="5cb57f05-d681-4df9-9424-a6ed3982fa49" testId="758c0741-af53-7d63-a76f-c8ceca60c790" testName="Backend.Tests.Application.Services.TenantServiceTests.CreateAsync_Fails_WhenSlugAlreadyExists" computerName="c4122b95be17" duration="00:00:00.0183019" startTime="2025-08-15T08:39:49.4214130+00:00" endTime="2025-08-15T08:39:49.4354520+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5cb57f05-d681-4df9-9424-a6ed3982fa49" />
+    <UnitTestResult executionId="69e0c728-f8bd-434d-ba4c-bfec2f57f59f" testId="c188d562-53da-3857-db1c-269faa4e2a3f" testName="Backend.Tests.Application.Services.TenantPublicServiceTests.GetCurrentTenantAsync_ReturnsTenant_WhenActive" computerName="c4122b95be17" duration="00:00:00.2463586" startTime="2025-08-15T08:39:49.3700194+00:00" endTime="2025-08-15T08:39:49.6161145+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="69e0c728-f8bd-434d-ba4c-bfec2f57f59f" />
+    <UnitTestResult executionId="4ea0ffd4-793f-4f37-9bc7-f8334d75a8f6" testId="b9c6cb93-5ac8-e980-32ab-a1b9d58b5c1e" testName="Backend.Tests.Application.Services.TenantServiceTests.ToggleAsync_Fails_WhenTenantNotFound" computerName="c4122b95be17" duration="00:00:00.0006746" startTime="2025-08-15T08:39:49.4376641+00:00" endTime="2025-08-15T08:39:49.4381958+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4ea0ffd4-793f-4f37-9bc7-f8334d75a8f6" />
+    <UnitTestResult executionId="244e4421-5ed4-49d8-b4ab-5d559558d27d" testId="8e80ccc0-8ac3-57c4-dad4-91d2b940bff3" testName="Backend.Tests.Application.Services.AuthServiceTests.RegisterAsync_Fails_WhenEmailOrPasswordMissing" computerName="c4122b95be17" duration="00:00:00.2843493" startTime="2025-08-15T08:39:49.0960248+00:00" endTime="2025-08-15T08:39:49.3822545+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="244e4421-5ed4-49d8-b4ab-5d559558d27d" />
+    <UnitTestResult executionId="5d86080a-3cc3-47a8-b1f7-02d2348f0c0a" testId="8dd6e572-26cc-8c1d-05bc-0cc5fe4a483a" testName="Backend.Tests.Application.Services.AuthServiceTests.RegisterAsync_Succeeds_WhenValid" computerName="c4122b95be17" duration="00:00:00.2372572" startTime="2025-08-15T08:39:49.4091982+00:00" endTime="2025-08-15T08:39:49.6456246+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5d86080a-3cc3-47a8-b1f7-02d2348f0c0a" />
+    <UnitTestResult executionId="1e499a56-914c-4f41-9338-31243cc7ed13" testId="166c7e95-8849-1710-434e-ed0d31c1f324" testName="Backend.Tests.Application.Services.TenantServiceTests.UploadLogoAsync_Fails_WhenInvalidFileType" computerName="c4122b95be17" duration="00:00:00.2876189" startTime="2025-08-15T08:39:49.0954984+00:00" endTime="2025-08-15T08:39:49.3857190+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1e499a56-914c-4f41-9338-31243cc7ed13" />
+    <UnitTestResult executionId="24be50cc-ce28-4fb4-b637-9c68ba33d7c0" testId="b1f9dcfc-4826-c0d0-ca6d-f3df91f36437" testName="Backend.Tests.Application.Services.TenantServiceTests.ListAsync_ReturnsAllTenants" computerName="c4122b95be17" duration="00:00:00.0125815" startTime="2025-08-15T08:39:49.3859507+00:00" endTime="2025-08-15T08:39:49.3983666+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="24be50cc-ce28-4fb4-b637-9c68ba33d7c0" />
+    <UnitTestResult executionId="3e1b9ac9-52cb-41cd-84a1-230ab518f9af" testId="a9043202-6086-a274-0650-b47c22eec854" testName="Backend.Tests.Application.Common.ResultTests.Ok_ShouldBeSuccess" computerName="c4122b95be17" duration="00:00:00.0014675" startTime="2025-08-15T08:39:49.1041234+00:00" endTime="2025-08-15T08:39:49.1041662+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3e1b9ac9-52cb-41cd-84a1-230ab518f9af" />
+    <UnitTestResult executionId="1955a0bd-3bcb-476f-a3c8-890a86269b7e" testId="dac6d23d-e9c0-48d6-e3c6-4d3e2cc8a742" testName="Backend.Tests.Application.Services.TenantServiceTests.UploadLogoAsync_Succeeds_WhenValid" computerName="c4122b95be17" duration="00:00:00.0021160" startTime="2025-08-15T08:39:49.4383437+00:00" endTime="2025-08-15T08:39:49.4403429+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1955a0bd-3bcb-476f-a3c8-890a86269b7e" />
+    <UnitTestResult executionId="cc816374-30b7-4234-be72-2a0300deb484" testId="e1218490-ed27-cd20-895a-b924795a36b5" testName="Backend.Tests.Application.Services.TenantHierarchyServiceTests.CreateNodeAsync_Fails_WhenLevelInvalid" computerName="c4122b95be17" duration="00:00:00.0005258" startTime="2025-08-15T08:39:49.4048045+00:00" endTime="2025-08-15T08:39:49.4051411+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="cc816374-30b7-4234-be72-2a0300deb484" />
+    <UnitTestResult executionId="0da1b223-19c0-45fe-b5a0-4230b11d84c8" testId="b314de46-f999-4074-66d9-031bf396ce1e" testName="Backend.Tests.Application.Services.UserMembershipServiceTests.AssignAsync_CreatesMembership_And_RespectsDefaultUniqueness" computerName="c4122b95be17" duration="00:00:00.1259894" startTime="2025-08-15T08:39:49.8050939+00:00" endTime="2025-08-15T08:39:49.9307357+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0da1b223-19c0-45fe-b5a0-4230b11d84c8" />
+    <UnitTestResult executionId="7a84f0b4-96e1-4c51-a2c6-5a2d0c0d7f9c" testId="b2790293-7952-1132-eda7-acc268ff8299" testName="Backend.Tests.Application.Services.TenantHierarchyServiceTests.CreateNodeAsync_Fails_WhenChildLevelIsNotGreaterThanParent" computerName="c4122b95be17" duration="00:00:00.2850853" startTime="2025-08-15T08:39:49.1170228+00:00" endTime="2025-08-15T08:39:49.3892631+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7a84f0b4-96e1-4c51-a2c6-5a2d0c0d7f9c" />
+    <UnitTestResult executionId="22fe4e1b-e6a2-47a2-8995-e2641d671543" testId="5ae620a9-90e0-34e5-c41a-79b9bfc42520" testName="Backend.Tests.Application.Services.TenantHierarchyServiceTests.CreateNodeAsync_Fails_WhenNameOrSlugMissing" computerName="c4122b95be17" duration="00:00:00.0004596" startTime="2025-08-15T08:39:49.4034338+00:00" endTime="2025-08-15T08:39:49.4037107+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="22fe4e1b-e6a2-47a2-8995-e2641d671543" />
+    <UnitTestResult executionId="049156c3-dc8a-45d1-9f47-789a7fbdde53" testId="31b21664-7780-d361-6791-8b951656c8c7" testName="Backend.Tests.Application.Services.UserMembershipServiceTests.AssignAsync_Fails_WhenDuplicateMembership" computerName="c4122b95be17" duration="00:00:00.5100015" startTime="2025-08-15T08:39:49.0960803+00:00" endTime="2025-08-15T08:39:49.6080374+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="049156c3-dc8a-45d1-9f47-789a7fbdde53" />
+    <UnitTestResult executionId="dd83e83e-92c5-4f3c-a7cb-6147d44f3891" testId="db482b59-5d5f-328d-387e-b93bb8b5a3dc" testName="Backend.Tests.Application.Services.AuthServiceTests.RegisterAsync_Fails_WhenUserAlreadyExists" computerName="c4122b95be17" duration="00:00:00.0192393" startTime="2025-08-15T08:39:49.3891940+00:00" endTime="2025-08-15T08:39:49.4083052+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="dd83e83e-92c5-4f3c-a7cb-6147d44f3891" />
+    <UnitTestResult executionId="da43a2a7-fd8e-4459-8f92-28a27df03b68" testId="a4c5eedf-dbce-d8b0-f488-e4404f4238b5" testName="Backend.Tests.Application.Services.AuthServiceTests.RegisterAsync_Fails_WhenTenantRoleGivenButTenantIdMissing" computerName="c4122b95be17" duration="00:00:00.0005464" startTime="2025-08-15T08:39:49.6457492+00:00" endTime="2025-08-15T08:39:49.6461880+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="da43a2a7-fd8e-4459-8f92-28a27df03b68" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="Backend.Tests.Application.Services.TenantServiceTests.UploadLogoAsync_Fails_WhenInvalidFileType" storage="/app/test/bin/debug/net8.0/backend.tests.dll" id="166c7e95-8849-1710-434e-ed0d31c1f324">
+      <Execution id="1e499a56-914c-4f41-9338-31243cc7ed13" />
+      <TestMethod codeBase="/app/test/bin/Debug/net8.0/Backend.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Backend.Tests.Application.Services.TenantServiceTests" name="UploadLogoAsync_Fails_WhenInvalidFileType" />
+    </UnitTest>
+    <UnitTest name="Backend.Tests.Application.Services.AuthServiceTests.RegisterAsync_Succeeds_WhenValid" storage="/app/test/bin/debug/net8.0/backend.tests.dll" id="8dd6e572-26cc-8c1d-05bc-0cc5fe4a483a">
+      <Execution id="5d86080a-3cc3-47a8-b1f7-02d2348f0c0a" />
+      <TestMethod codeBase="/app/test/bin/Debug/net8.0/Backend.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Backend.Tests.Application.Services.AuthServiceTests" name="RegisterAsync_Succeeds_WhenValid" />
+    </UnitTest>
+    <UnitTest name="Backend.Tests.Application.Services.TenantHierarchyServiceTests.CreateNodeAsync_Fails_WhenParentNotFound" storage="/app/test/bin/debug/net8.0/backend.tests.dll" id="a3815c71-aa9d-5791-b0c8-47317dbfd503">
+      <Execution id="7a3f260e-1304-4951-8ca6-b23376e7b77c" />
+      <TestMethod codeBase="/app/test/bin/Debug/net8.0/Backend.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Backend.Tests.Application.Services.TenantHierarchyServiceTests" name="CreateNodeAsync_Fails_WhenParentNotFound" />
+    </UnitTest>
+    <UnitTest name="Backend.Tests.Application.Services.TenantServiceTests.CreateAsync_Fails_WhenSlugAlreadyExists" storage="/app/test/bin/debug/net8.0/backend.tests.dll" id="758c0741-af53-7d63-a76f-c8ceca60c790">
+      <Execution id="5cb57f05-d681-4df9-9424-a6ed3982fa49" />
+      <TestMethod codeBase="/app/test/bin/Debug/net8.0/Backend.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Backend.Tests.Application.Services.TenantServiceTests" name="CreateAsync_Fails_WhenSlugAlreadyExists" />
+    </UnitTest>
+    <UnitTest name="Backend.Tests.Application.Services.TenantServiceTests.UploadLogoAsync_Fails_WhenTenantNotFound" storage="/app/test/bin/debug/net8.0/backend.tests.dll" id="9e12ea75-cbd6-c870-5cbc-255b6a0bb296">
+      <Execution id="f089476e-c7ed-4e5f-b30f-db8db0b2e091" />
+      <TestMethod codeBase="/app/test/bin/Debug/net8.0/Backend.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Backend.Tests.Application.Services.TenantServiceTests" name="UploadLogoAsync_Fails_WhenTenantNotFound" />
+    </UnitTest>
+    <UnitTest name="Backend.Tests.Application.Services.TenantHierarchyServiceTests.CreateNodeAsync_Fails_WhenSlugExists" storage="/app/test/bin/debug/net8.0/backend.tests.dll" id="7c8cc0ec-8308-6d27-6faf-a5ec55afaad0">
+      <Execution id="09f351f8-d61f-4cb6-b0df-f1e353c49b90" />
+      <TestMethod codeBase="/app/test/bin/Debug/net8.0/Backend.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Backend.Tests.Application.Services.TenantHierarchyServiceTests" name="CreateNodeAsync_Fails_WhenSlugExists" />
+    </UnitTest>
+    <UnitTest name="Backend.Tests.Application.Services.TenantHierarchyServiceTests.CreateNodeAsync_Fails_WhenNameOrSlugMissing" storage="/app/test/bin/debug/net8.0/backend.tests.dll" id="5ae620a9-90e0-34e5-c41a-79b9bfc42520">
+      <Execution id="22fe4e1b-e6a2-47a2-8995-e2641d671543" />
+      <TestMethod codeBase="/app/test/bin/Debug/net8.0/Backend.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Backend.Tests.Application.Services.TenantHierarchyServiceTests" name="CreateNodeAsync_Fails_WhenNameOrSlugMissing" />
+    </UnitTest>
+    <UnitTest name="Backend.Tests.Application.Services.UserMembershipServiceTests.AssignAsync_CreatesMembership_And_RespectsDefaultUniqueness" storage="/app/test/bin/debug/net8.0/backend.tests.dll" id="b314de46-f999-4074-66d9-031bf396ce1e">
+      <Execution id="0da1b223-19c0-45fe-b5a0-4230b11d84c8" />
+      <TestMethod codeBase="/app/test/bin/Debug/net8.0/Backend.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Backend.Tests.Application.Services.UserMembershipServiceTests" name="AssignAsync_CreatesMembership_And_RespectsDefaultUniqueness" />
+    </UnitTest>
+    <UnitTest name="Backend.Tests.Application.Services.TenantServiceTests.CreateAsync_Succeeds_WithValidInput" storage="/app/test/bin/debug/net8.0/backend.tests.dll" id="0aa6adfc-662a-ae78-4c2c-2e6af6dad68c">
+      <Execution id="e17f241b-698b-4a0d-8f6f-712aab32bf19" />
+      <TestMethod codeBase="/app/test/bin/Debug/net8.0/Backend.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Backend.Tests.Application.Services.TenantServiceTests" name="CreateAsync_Succeeds_WithValidInput" />
+    </UnitTest>
+    <UnitTest name="Backend.Tests.Application.Services.AuthServiceTests.RegisterAsync_Fails_WhenTenantRoleGivenButTenantIdMissing" storage="/app/test/bin/debug/net8.0/backend.tests.dll" id="a4c5eedf-dbce-d8b0-f488-e4404f4238b5">
+      <Execution id="da43a2a7-fd8e-4459-8f92-28a27df03b68" />
+      <TestMethod codeBase="/app/test/bin/Debug/net8.0/Backend.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Backend.Tests.Application.Services.AuthServiceTests" name="RegisterAsync_Fails_WhenTenantRoleGivenButTenantIdMissing" />
+    </UnitTest>
+    <UnitTest name="Backend.Tests.Application.Services.TenantHierarchyServiceTests.CreateNodeAsync_Fails_WhenLevelInvalid" storage="/app/test/bin/debug/net8.0/backend.tests.dll" id="e1218490-ed27-cd20-895a-b924795a36b5">
+      <Execution id="cc816374-30b7-4234-be72-2a0300deb484" />
+      <TestMethod codeBase="/app/test/bin/Debug/net8.0/Backend.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Backend.Tests.Application.Services.TenantHierarchyServiceTests" name="CreateNodeAsync_Fails_WhenLevelInvalid" />
+    </UnitTest>
+    <UnitTest name="Backend.Tests.Application.Services.AuthServiceTests.RegisterAsync_Fails_WhenEmailOrPasswordMissing" storage="/app/test/bin/debug/net8.0/backend.tests.dll" id="8e80ccc0-8ac3-57c4-dad4-91d2b940bff3">
+      <Execution id="244e4421-5ed4-49d8-b4ab-5d559558d27d" />
+      <TestMethod codeBase="/app/test/bin/Debug/net8.0/Backend.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Backend.Tests.Application.Services.AuthServiceTests" name="RegisterAsync_Fails_WhenEmailOrPasswordMissing" />
+    </UnitTest>
+    <UnitTest name="Backend.Tests.Application.Services.TenantServiceTests.ListAsync_ReturnsAllTenants" storage="/app/test/bin/debug/net8.0/backend.tests.dll" id="b1f9dcfc-4826-c0d0-ca6d-f3df91f36437">
+      <Execution id="24be50cc-ce28-4fb4-b637-9c68ba33d7c0" />
+      <TestMethod codeBase="/app/test/bin/Debug/net8.0/Backend.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Backend.Tests.Application.Services.TenantServiceTests" name="ListAsync_ReturnsAllTenants" />
+    </UnitTest>
+    <UnitTest name="Backend.Tests.Application.Services.TenantHierarchyServiceTests.CreateNodeAsync_Succeeds_ForValidChild" storage="/app/test/bin/debug/net8.0/backend.tests.dll" id="2da42b9a-72bb-4b25-9b0b-01ad5725aabc">
+      <Execution id="42f4573b-e145-47ba-a9a9-613c910a1ae6" />
+      <TestMethod codeBase="/app/test/bin/Debug/net8.0/Backend.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Backend.Tests.Application.Services.TenantHierarchyServiceTests" name="CreateNodeAsync_Succeeds_ForValidChild" />
+    </UnitTest>
+    <UnitTest name="Backend.Tests.Application.Services.TenantServiceTests.CreateAsync_Fails_WhenNameOrSlugMissing" storage="/app/test/bin/debug/net8.0/backend.tests.dll" id="7f081e1d-6a58-3e76-9ab9-4ebbc6f29cbf">
+      <Execution id="4a23f9c5-c266-428b-8652-7345c418d74e" />
+      <TestMethod codeBase="/app/test/bin/Debug/net8.0/Backend.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Backend.Tests.Application.Services.TenantServiceTests" name="CreateAsync_Fails_WhenNameOrSlugMissing" />
+    </UnitTest>
+    <UnitTest name="Backend.Tests.Application.Services.TenantHierarchyServiceTests.CreateNodeAsync_Fails_WhenRootNodeLevelNotOrganization" storage="/app/test/bin/debug/net8.0/backend.tests.dll" id="902e1281-b133-ca94-1926-d38e5bbe399d">
+      <Execution id="0d269430-79f0-4f0c-b796-007f276a1fb3" />
+      <TestMethod codeBase="/app/test/bin/Debug/net8.0/Backend.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Backend.Tests.Application.Services.TenantHierarchyServiceTests" name="CreateNodeAsync_Fails_WhenRootNodeLevelNotOrganization" />
+    </UnitTest>
+    <UnitTest name="Backend.Tests.Application.Common.ResultTests.OkT_ShouldCarryValue" storage="/app/test/bin/debug/net8.0/backend.tests.dll" id="87afd9a9-3a76-05dc-5136-4351a04ca482">
+      <Execution id="295cce1d-a34f-47c7-9096-add3af77a6a0" />
+      <TestMethod codeBase="/app/test/bin/Debug/net8.0/Backend.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Backend.Tests.Application.Common.ResultTests" name="OkT_ShouldCarryValue" />
+    </UnitTest>
+    <UnitTest name="Backend.Tests.Application.Services.TenantHierarchyServiceTests.CreateNodeAsync_Succeeds_ForValidRootNode" storage="/app/test/bin/debug/net8.0/backend.tests.dll" id="a3cc466e-448c-e81e-fbe1-30c54c91504e">
+      <Execution id="4437de9d-c01d-4224-b991-98df72d02f9d" />
+      <TestMethod codeBase="/app/test/bin/Debug/net8.0/Backend.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Backend.Tests.Application.Services.TenantHierarchyServiceTests" name="CreateNodeAsync_Succeeds_ForValidRootNode" />
+    </UnitTest>
+    <UnitTest name="Backend.Tests.Application.Services.AuthServiceTests.RegisterAsync_Fails_WhenTenantNotFound" storage="/app/test/bin/debug/net8.0/backend.tests.dll" id="3f3095e8-455c-9033-a44f-fd001bf06c95">
+      <Execution id="12f19703-045f-4ed0-b669-f4d7c6fc6ec6" />
+      <TestMethod codeBase="/app/test/bin/Debug/net8.0/Backend.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Backend.Tests.Application.Services.AuthServiceTests" name="RegisterAsync_Fails_WhenTenantNotFound" />
+    </UnitTest>
+    <UnitTest name="Backend.Tests.Application.Common.ResultTests.Ok_ShouldBeSuccess" storage="/app/test/bin/debug/net8.0/backend.tests.dll" id="a9043202-6086-a274-0650-b47c22eec854">
+      <Execution id="3e1b9ac9-52cb-41cd-84a1-230ab518f9af" />
+      <TestMethod codeBase="/app/test/bin/Debug/net8.0/Backend.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Backend.Tests.Application.Common.ResultTests" name="Ok_ShouldBeSuccess" />
+    </UnitTest>
+    <UnitTest name="Backend.Tests.Application.Services.TenantServiceTests.ToggleAsync_Fails_WhenTenantNotFound" storage="/app/test/bin/debug/net8.0/backend.tests.dll" id="b9c6cb93-5ac8-e980-32ab-a1b9d58b5c1e">
+      <Execution id="4ea0ffd4-793f-4f37-9bc7-f8334d75a8f6" />
+      <TestMethod codeBase="/app/test/bin/Debug/net8.0/Backend.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Backend.Tests.Application.Services.TenantServiceTests" name="ToggleAsync_Fails_WhenTenantNotFound" />
+    </UnitTest>
+    <UnitTest name="Backend.Tests.Application.Services.TenantServiceTests.UploadLogoAsync_Succeeds_WhenValid" storage="/app/test/bin/debug/net8.0/backend.tests.dll" id="dac6d23d-e9c0-48d6-e3c6-4d3e2cc8a742">
+      <Execution id="1955a0bd-3bcb-476f-a3c8-890a86269b7e" />
+      <TestMethod codeBase="/app/test/bin/Debug/net8.0/Backend.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Backend.Tests.Application.Services.TenantServiceTests" name="UploadLogoAsync_Succeeds_WhenValid" />
+    </UnitTest>
+    <UnitTest name="Backend.Tests.Application.Services.TenantServiceTests.ToggleAsync_Succeeds" storage="/app/test/bin/debug/net8.0/backend.tests.dll" id="024786ea-bb0b-b19e-9893-7d2d49fc7763">
+      <Execution id="98f23344-8325-431c-86c0-9d53fe332999" />
+      <TestMethod codeBase="/app/test/bin/Debug/net8.0/Backend.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Backend.Tests.Application.Services.TenantServiceTests" name="ToggleAsync_Succeeds" />
+    </UnitTest>
+    <UnitTest name="Backend.Tests.Application.Services.UserMembershipServiceTests.AssignAsync_Fails_WhenTenantInactive" storage="/app/test/bin/debug/net8.0/backend.tests.dll" id="838d2943-bac4-47c8-047d-cf1cda0b9034">
+      <Execution id="9ad2e52a-baf7-47bb-8f60-60ebb6caccd6" />
+      <TestMethod codeBase="/app/test/bin/Debug/net8.0/Backend.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Backend.Tests.Application.Services.UserMembershipServiceTests" name="AssignAsync_Fails_WhenTenantInactive" />
+    </UnitTest>
+    <UnitTest name="Backend.Tests.Application.Services.UserServiceTests.ListAsync_FiltersByTenant" storage="/app/test/bin/debug/net8.0/backend.tests.dll" id="960bfbc9-f976-c6d1-9ede-34a2f7431ece">
+      <Execution id="7e3df3a0-54a9-44ba-a5ee-100dc04f99b3" />
+      <TestMethod codeBase="/app/test/bin/Debug/net8.0/Backend.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Backend.Tests.Application.Services.UserServiceTests" name="ListAsync_FiltersByTenant" />
+    </UnitTest>
+    <UnitTest name="Backend.Tests.Application.Services.UserMembershipServiceTests.AssignAsync_Fails_WhenDuplicateMembership" storage="/app/test/bin/debug/net8.0/backend.tests.dll" id="31b21664-7780-d361-6791-8b951656c8c7">
+      <Execution id="049156c3-dc8a-45d1-9f47-789a7fbdde53" />
+      <TestMethod codeBase="/app/test/bin/Debug/net8.0/Backend.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Backend.Tests.Application.Services.UserMembershipServiceTests" name="AssignAsync_Fails_WhenDuplicateMembership" />
+    </UnitTest>
+    <UnitTest name="Backend.Tests.Application.Common.ResultTests.Fail_ShouldContainErrorAndStatus" storage="/app/test/bin/debug/net8.0/backend.tests.dll" id="7b607913-2dc2-8669-91fa-0b8c344313f1">
+      <Execution id="45436ebe-400b-42ae-a8fc-8b0e7c39159d" />
+      <TestMethod codeBase="/app/test/bin/Debug/net8.0/Backend.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Backend.Tests.Application.Common.ResultTests" name="Fail_ShouldContainErrorAndStatus" />
+    </UnitTest>
+    <UnitTest name="Backend.Tests.UnitTest1.Test1" storage="/app/test/bin/debug/net8.0/backend.tests.dll" id="4a8bd80c-6c50-040b-b2ee-c54bffc15279">
+      <Execution id="f56f2c8b-21ed-4d6c-b3f3-15d2ae2c6b38" />
+      <TestMethod codeBase="/app/test/bin/Debug/net8.0/Backend.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Backend.Tests.UnitTest1" name="Test1" />
+    </UnitTest>
+    <UnitTest name="Backend.Tests.Application.Services.TenantHierarchyServiceTests.CreateNodeAsync_Fails_WhenChildLevelIsNotGreaterThanParent" storage="/app/test/bin/debug/net8.0/backend.tests.dll" id="b2790293-7952-1132-eda7-acc268ff8299">
+      <Execution id="7a84f0b4-96e1-4c51-a2c6-5a2d0c0d7f9c" />
+      <TestMethod codeBase="/app/test/bin/Debug/net8.0/Backend.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Backend.Tests.Application.Services.TenantHierarchyServiceTests" name="CreateNodeAsync_Fails_WhenChildLevelIsNotGreaterThanParent" />
+    </UnitTest>
+    <UnitTest name="Backend.Tests.Application.Services.TenantPublicServiceTests.GetCurrentTenantAsync_ReturnsTenant_WhenActive" storage="/app/test/bin/debug/net8.0/backend.tests.dll" id="c188d562-53da-3857-db1c-269faa4e2a3f">
+      <Execution id="69e0c728-f8bd-434d-ba4c-bfec2f57f59f" />
+      <TestMethod codeBase="/app/test/bin/Debug/net8.0/Backend.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Backend.Tests.Application.Services.TenantPublicServiceTests" name="GetCurrentTenantAsync_ReturnsTenant_WhenActive" />
+    </UnitTest>
+    <UnitTest name="Backend.Tests.Application.Services.TenantPublicServiceTests.GetCurrentTenantAsync_Fails_WhenNotFoundOrInactive" storage="/app/test/bin/debug/net8.0/backend.tests.dll" id="0b3e4e71-0238-4296-85eb-e5ab771642a8">
+      <Execution id="b287458a-a512-43b2-8bdc-5204383600a6" />
+      <TestMethod codeBase="/app/test/bin/Debug/net8.0/Backend.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Backend.Tests.Application.Services.TenantPublicServiceTests" name="GetCurrentTenantAsync_Fails_WhenNotFoundOrInactive" />
+    </UnitTest>
+    <UnitTest name="Backend.Tests.Application.Services.AuthServiceTests.RegisterAsync_Fails_WhenUserAlreadyExists" storage="/app/test/bin/debug/net8.0/backend.tests.dll" id="db482b59-5d5f-328d-387e-b93bb8b5a3dc">
+      <Execution id="dd83e83e-92c5-4f3c-a7cb-6147d44f3891" />
+      <TestMethod codeBase="/app/test/bin/Debug/net8.0/Backend.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Backend.Tests.Application.Services.AuthServiceTests" name="RegisterAsync_Fails_WhenUserAlreadyExists" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="87afd9a9-3a76-05dc-5136-4351a04ca482" executionId="295cce1d-a34f-47c7-9096-add3af77a6a0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7f081e1d-6a58-3e76-9ab9-4ebbc6f29cbf" executionId="4a23f9c5-c266-428b-8652-7345c418d74e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="0b3e4e71-0238-4296-85eb-e5ab771642a8" executionId="b287458a-a512-43b2-8bdc-5204383600a6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7b607913-2dc2-8669-91fa-0b8c344313f1" executionId="45436ebe-400b-42ae-a8fc-8b0e7c39159d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4a8bd80c-6c50-040b-b2ee-c54bffc15279" executionId="f56f2c8b-21ed-4d6c-b3f3-15d2ae2c6b38" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7c8cc0ec-8308-6d27-6faf-a5ec55afaad0" executionId="09f351f8-d61f-4cb6-b0df-f1e353c49b90" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="024786ea-bb0b-b19e-9893-7d2d49fc7763" executionId="98f23344-8325-431c-86c0-9d53fe332999" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a3cc466e-448c-e81e-fbe1-30c54c91504e" executionId="4437de9d-c01d-4224-b991-98df72d02f9d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="838d2943-bac4-47c8-047d-cf1cda0b9034" executionId="9ad2e52a-baf7-47bb-8f60-60ebb6caccd6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="902e1281-b133-ca94-1926-d38e5bbe399d" executionId="0d269430-79f0-4f0c-b796-007f276a1fb3" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="2da42b9a-72bb-4b25-9b0b-01ad5725aabc" executionId="42f4573b-e145-47ba-a9a9-613c910a1ae6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9e12ea75-cbd6-c870-5cbc-255b6a0bb296" executionId="f089476e-c7ed-4e5f-b30f-db8db0b2e091" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a3815c71-aa9d-5791-b0c8-47317dbfd503" executionId="7a3f260e-1304-4951-8ca6-b23376e7b77c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="960bfbc9-f976-c6d1-9ede-34a2f7431ece" executionId="7e3df3a0-54a9-44ba-a5ee-100dc04f99b3" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3f3095e8-455c-9033-a44f-fd001bf06c95" executionId="12f19703-045f-4ed0-b669-f4d7c6fc6ec6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="0aa6adfc-662a-ae78-4c2c-2e6af6dad68c" executionId="e17f241b-698b-4a0d-8f6f-712aab32bf19" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="758c0741-af53-7d63-a76f-c8ceca60c790" executionId="5cb57f05-d681-4df9-9424-a6ed3982fa49" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c188d562-53da-3857-db1c-269faa4e2a3f" executionId="69e0c728-f8bd-434d-ba4c-bfec2f57f59f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b9c6cb93-5ac8-e980-32ab-a1b9d58b5c1e" executionId="4ea0ffd4-793f-4f37-9bc7-f8334d75a8f6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8e80ccc0-8ac3-57c4-dad4-91d2b940bff3" executionId="244e4421-5ed4-49d8-b4ab-5d559558d27d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8dd6e572-26cc-8c1d-05bc-0cc5fe4a483a" executionId="5d86080a-3cc3-47a8-b1f7-02d2348f0c0a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="166c7e95-8849-1710-434e-ed0d31c1f324" executionId="1e499a56-914c-4f41-9338-31243cc7ed13" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b1f9dcfc-4826-c0d0-ca6d-f3df91f36437" executionId="24be50cc-ce28-4fb4-b637-9c68ba33d7c0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a9043202-6086-a274-0650-b47c22eec854" executionId="3e1b9ac9-52cb-41cd-84a1-230ab518f9af" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="dac6d23d-e9c0-48d6-e3c6-4d3e2cc8a742" executionId="1955a0bd-3bcb-476f-a3c8-890a86269b7e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e1218490-ed27-cd20-895a-b924795a36b5" executionId="cc816374-30b7-4234-be72-2a0300deb484" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b314de46-f999-4074-66d9-031bf396ce1e" executionId="0da1b223-19c0-45fe-b5a0-4230b11d84c8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b2790293-7952-1132-eda7-acc268ff8299" executionId="7a84f0b4-96e1-4c51-a2c6-5a2d0c0d7f9c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5ae620a9-90e0-34e5-c41a-79b9bfc42520" executionId="22fe4e1b-e6a2-47a2-8995-e2641d671543" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="31b21664-7780-d361-6791-8b951656c8c7" executionId="049156c3-dc8a-45d1-9f47-789a7fbdde53" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="db482b59-5d5f-328d-387e-b93bb8b5a3dc" executionId="dd83e83e-92c5-4f3c-a7cb-6147d44f3891" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a4c5eedf-dbce-d8b0-f488-e4404f4238b5" executionId="da43a2a7-fd8e-4459-8f92-28a27df03b68" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Completed">
+    <Counters total="32" executed="32" passed="32" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.3+b1b99bdeb3 (64-bit .NET 8.0.19)
+[xUnit.net 00:00:00.03]   Discovering: Backend.Tests
+[xUnit.net 00:00:00.05]   Discovered:  Backend.Tests
+[xUnit.net 00:00:00.06]   Starting:    Backend.Tests
+[xUnit.net 00:00:00.90]   Finished:    Backend.Tests
+</StdOut>
+    </Output>
+  </ResultSummary>
+</TestRun>
