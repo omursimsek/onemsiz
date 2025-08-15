@@ -216,7 +216,7 @@ var assemblies = [
       { "name": "Backend.Application.Common.Result", "rp": "Backend_Result.html", "cl": 5, "ucl": 0, "cal": 5, "tl": 26, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "Backend.Application.Common.Result<T>", "rp": "Backend_Result_1.html", "cl": 3, "ucl": 1, "cal": 4, "tl": 26, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "Backend.Application.DTOs.Auth.LoginRequest", "rp": "Backend_LoginRequest.html", "cl": 0, "ucl": 4, "cal": 4, "tl": 6, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "Backend.Application.DTOs.Auth.LoginResponse", "rp": "Backend_LoginResponse.html", "cl": 0, "ucl": 1, "cal": 1, "tl": 3, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "Backend.Application.DTOs.Auth.LoginResponse", "rp": "Backend_LoginResponse.html", "cl": 0, "ucl": 6, "cal": 6, "tl": 8, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "Backend.Application.DTOs.Auth.RegisterRequest", "rp": "Backend_RegisterRequest.html", "cl": 6, "ucl": 0, "cal": 6, "tl": 10, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "Backend.Application.DTOs.Tenants.CreateTenantNodeRequest", "rp": "Backend_CreateTenantNodeRequest.html", "cl": 7, "ucl": 0, "cal": 7, "tl": 9, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "Backend.Application.DTOs.Tenants.CreateTenantRequest", "rp": "Backend_CreateTenantRequest.html", "cl": 5, "ucl": 0, "cal": 5, "tl": 7, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
@@ -245,14 +245,14 @@ var assemblies = [
       { "name": "Backend.Domain.ValueObjects.TenantPath", "rp": "Backend_TenantPath.html", "cl": 2, "ucl": 0, "cal": 2, "tl": 15, "cb": 2, "tb": 2, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "Backend.Infrastructure.Data.AppDbContext", "rp": "Backend_AppDbContext.html", "cl": 51, "ucl": 7, "cal": 58, "tl": 94, "cb": 0, "tb": 8, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "Backend.Infrastructure.Extensions.DatabaseExtensions", "rp": "Backend_DatabaseExtensions.html", "cl": 0, "ucl": 19, "cal": 19, "tl": 39, "cb": 0, "tb": 6, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "Backend.Infrastructure.Extensions.ServiceCollectionExtensions", "rp": "Backend_ServiceCollectionExtensions.html", "cl": 0, "ucl": 37, "cal": 37, "tl": 71, "cb": 0, "tb": 4, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "Backend.Infrastructure.Extensions.ServiceCollectionExtensions", "rp": "Backend_ServiceCollectionExtensions.html", "cl": 0, "ucl": 146, "cal": 146, "tl": 169, "cb": 0, "tb": 48, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "Backend.Infrastructure.Extensions.SwaggerExtensions", "rp": "Backend_SwaggerExtensions.html", "cl": 0, "ucl": 38, "cal": 38, "tl": 50, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "Backend.Infrastructure.Files.LocalFileStorage", "rp": "Backend_LocalFileStorage.html", "cl": 0, "ucl": 10, "cal": 10, "tl": 24, "cb": 0, "tb": 4, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "Backend.Infrastructure.Security.JwtOptions", "rp": "Backend_JwtOptions.html", "cl": 0, "ucl": 4, "cal": 4, "tl": 9, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "Backend.Infrastructure.Security.TokenService", "rp": "Backend_TokenService.html", "cl": 0, "ucl": 17, "cal": 17, "tl": 35, "cb": 0, "tb": 4, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "Backend.Migrations.AppDbContextModelSnapshot", "rp": "Backend_AppDbContextModelSnapshot.html", "cl": 0, "ucl": 164, "cal": 164, "tl": 193, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "Backend.Migrations.Init", "rp": "Backend_Init.html", "cl": 0, "ucl": 280, "cal": 280, "tl": 342, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "Program", "rp": "Backend_Program.html", "cl": 0, "ucl": 171, "cal": 171, "tl": 222, "cb": 0, "tb": 36, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "Program", "rp": "Backend_Program.html", "cl": 0, "ucl": 210, "cal": 210, "tl": 236, "cb": 0, "tb": 100, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
     ]},
 ];
 
@@ -267,12 +267,6 @@ var riskHotspotMetrics = [
 
 var riskHotspots = [
   {
-    "assembly": "Backend", "class": "Program", "reportPath": "Backend_Program.html", "methodName": "<Main>$(System.String[])", "methodShortName": "<Main>$(...)", "fileIndex": 0, "line": 20,
-    "metrics": [
-      { "value": 1332, "exceeded": true },
-      { "value": 36, "exceeded": true },
-    ]},
-  {
     "assembly": "Backend", "class": "Backend.Application.Services.AuthService", "reportPath": "Backend_AuthService.html", "methodName": "LoginAsync()", "methodShortName": "LoginAsync()", "fileIndex": 0, "line": 55,
     "metrics": [
       { "value": 272, "exceeded": true },
@@ -286,6 +280,12 @@ var riskHotspots = [
     ]},
   {
     "assembly": "Backend", "class": "Backend.Infrastructure.Data.AppDbContext", "reportPath": "Backend_AppDbContext.html", "methodName": "CurrentTenantId()", "methodShortName": "CurrentTenantId()", "fileIndex": 0, "line": 88,
+    "metrics": [
+      { "value": 72, "exceeded": true },
+      { "value": 8, "exceeded": false },
+    ]},
+  {
+    "assembly": "Backend", "class": "Program", "reportPath": "Backend_Program.html", "methodName": "<Main>$(System.String[])", "methodShortName": "<Main>$(...)", "fileIndex": 0, "line": 20,
     "metrics": [
       { "value": 72, "exceeded": true },
       { "value": 8, "exceeded": false },

@@ -6,6 +6,8 @@ namespace Backend.Controllers;
 [ApiExplorerSettings(IgnoreApi = true)]
 public class HomeController : Controller
 {
+
+    [AllowAnonymous]
     public IActionResult Index() => Content("Backend (DEV) is running.");
     
     [Authorize(Policy = "TenantOnly")]
