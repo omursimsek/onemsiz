@@ -35,6 +35,9 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<ITenantPublicService, TenantPublicService>();
         services.AddScoped<IUserMembershipService, UserMembershipService>();
+        services.AddScoped<ILocationService, LocationService>();
+        services.AddScoped<ILocationImportService, LocationImportService>(); // ETL istiyorsan
+        
         // Teknik servisler (JWT üretimi vs.)
         // services.AddSingleton<ITokenService, TokenService>();
         services.AddScoped<ITokenService, TokenService>();
