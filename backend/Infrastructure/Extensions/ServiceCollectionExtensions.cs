@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
+using Backend.Application.Services.LocationImporting;
 
 namespace Backend.Infrastructure.Extensions;
 
@@ -37,7 +38,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IUserMembershipService, UserMembershipService>();
         services.AddScoped<ILocationService, LocationService>();
         services.AddScoped<ILocationImportService, LocationImportService>(); // ETL istiyorsan
-        
+
         // Teknik servisler (JWT üretimi vs.)
         // services.AddSingleton<ITokenService, TokenService>();
         services.AddScoped<ITokenService, TokenService>();

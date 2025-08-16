@@ -5,7 +5,7 @@ using Backend.Domain.Entities;
 using Backend.Domain.Enums;
 using Backend.Infrastructure.Data;
 
-namespace Backend.Infrastructure.Services;
+namespace Backend.Application.Services;
 
 public class LocationService : ILocationService
 {

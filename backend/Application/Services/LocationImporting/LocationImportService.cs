@@ -7,6 +7,7 @@ using Backend.Application.Interfaces;
 using Backend.Application.Services.LocationImporting;
 using Backend.Domain.Entities;
 using Backend.Infrastructure.Data;
+using Backend.Domain.Enums;
 
 namespace Backend.Application.Services.LocationImporting;
 
@@ -77,83 +78,94 @@ public class LocationImportService : ILocationImportService
 
         await foreach (var rec in csv.GetRecordsAsync<UnlocodeRow>(ct))
         {
-            rows++;
-            if (string.IsNullOrWhiteSpace(rec.Country) || string.IsNullOrWhiteSpace(rec.Location))
-                continue;
-
-            var code = (rec.Country!.Trim().ToUpperInvariant()) + (rec.Location!.Trim().ToUpperInvariant());
-
-            // 1) Identifier var mı?
-            var ident = await _db.LocationIdentifiers
-                .AsNoTracking()
-                .FirstOrDefaultAsync(i => i.Scheme == CodeScheme.UNLOCODE.ToString() && i.Code == code, ct);
-
-            Location loc;
-
-            if (ident is null)
+            try
             {
-                // 2) Aynı ülke & isimle var mı? (çok gevşek eşleme; sen diline göre sıkılaştır)
-                loc = await _db.Locations
-                    .FirstOrDefaultAsync(l =>
-                        l.CountryISO2 == rec.Country && l.Name == (rec.Name ?? code), ct)
-                    ?? new Location
-                    {
-                        Kind = LocationKind.Station, // rail odaklı başlıyoruz; sonra type normalize edebilirsin
-                        Name = rec.Name ?? code,
-                        NameAscii = rec.NameWoDiacritics ?? rec.Name,
-                        CountryISO2 = rec.Country!,
-                        Subdivision = rec.Subdivision
-                    };
+                rows++;
+                if (string.IsNullOrWhiteSpace(rec.Country) || string.IsNullOrWhiteSpace(rec.Location))
+                    continue;
 
-                if (loc.Id == Guid.Empty) // yeni oluşturulduysa ekle
+                var code = (rec.Country!.Trim().ToUpperInvariant()) + (rec.Location!.Trim().ToUpperInvariant());
+
+                // 1) Identifier var mı?
+                var ident = await _db.LocationIdentifiers
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(i => i.Scheme == CodeScheme.UNLOCODE && i.Code == code, ct);
+
+                Location loc;
+
+                if (ident is null)
                 {
-                    _db.Locations.Add(loc);
-                    locInserted++;
+                    loc = await _db.Locations
+                        .FirstOrDefaultAsync(l =>
+                            l.CountryISO2 == rec.Country && l.Name == (rec.Name ?? code), ct)
+                        ?? new Location
+                        {
+                            Kind = LocationKind.Station,
+                            Name = rec.Name ?? code,
+                            NameAscii = rec.NameWoDiacritics ?? rec.Name,
+                            CountryISO2 = rec.Country!,
+                            Subdivision = rec.Subdivision
+                        };
+
+                    if (loc.Id == Guid.Empty)
+                    {
+                        _db.Locations.Add(loc);
+                        locInserted++;
+                    }
+                    else
+                    {
+                        bool changed = false;
+                        if (string.IsNullOrWhiteSpace(loc.NameAscii) && !string.IsNullOrWhiteSpace(rec.NameWoDiacritics))
+                        { loc.NameAscii = rec.NameWoDiacritics; changed = true; }
+                        if (string.IsNullOrWhiteSpace(loc.Subdivision) && !string.IsNullOrWhiteSpace(rec.Subdivision))
+                        { loc.Subdivision = rec.Subdivision; changed = true; }
+                        if (changed) locUpdated++;
+                    }
+
+                    var extra = JsonSerializer.Serialize(new
+                    {
+                        rec.Function,
+                        rec.Status,
+                        rec.Date,
+                        rec.IATA,
+                        rec.Coordinates
+                    });
+
+                    _db.LocationIdentifiers.Add(new LocationIdentifier
+                    {
+                        Location = loc,
+                        Scheme = CodeScheme.UNLOCODE,
+                        Code = code,
+                        ExtraJson = extra
+                    });
+                    idInserted++;
                 }
                 else
                 {
-                    // var olan lokasyonun bazı alanlarını nazikçe güncelle
+                    var existing = await _db.Locations.FirstAsync(l => l.Id == ident.LocationId, ct);
                     bool changed = false;
-                    if (string.IsNullOrWhiteSpace(loc.NameAscii) && !string.IsNullOrWhiteSpace(rec.NameWoDiacritics))
-                    { loc.NameAscii = rec.NameWoDiacritics; changed = true; }
-                    if (string.IsNullOrWhiteSpace(loc.Subdivision) && !string.IsNullOrWhiteSpace(rec.Subdivision))
-                    { loc.Subdivision = rec.Subdivision; changed = true; }
+                    if (string.IsNullOrWhiteSpace(existing.NameAscii) && !string.IsNullOrWhiteSpace(rec.NameWoDiacritics))
+                    { existing.NameAscii = rec.NameWoDiacritics; changed = true; }
+                    if (string.IsNullOrWhiteSpace(existing.Subdivision) && !string.IsNullOrWhiteSpace(rec.Subdivision))
+                    { existing.Subdivision = rec.Subdivision; changed = true; }
                     if (changed) locUpdated++;
                 }
 
-                // 3) Identifier ekle
-                var extra = JsonSerializer.Serialize(new {
-                    rec.Function, rec.Status, rec.Date, rec.IATA, rec.Coordinates
-                });
-
-                _db.LocationIdentifiers.Add(new LocationIdentifier
+                batchCount++;
+                if (batchCount >= batchSize)
                 {
-                    Location = loc,
-                    Scheme = CodeScheme.UNLOCODE,
-                    Code = code,
-                    ExtraJson = extra
-                });
-                idInserted++;
+                    await _db.SaveChangesAsync(ct);
+                    batchCount = 0;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                // Identifier zaten var → opsiyonel “nazik update”
-                var existing = await _db.Locations.FirstAsync(l => l.Id == ident.LocationId, ct);
-                bool changed = false;
-                if (string.IsNullOrWhiteSpace(existing.NameAscii) && !string.IsNullOrWhiteSpace(rec.NameWoDiacritics))
-                { existing.NameAscii = rec.NameWoDiacritics; changed = true; }
-                if (string.IsNullOrWhiteSpace(existing.Subdivision) && !string.IsNullOrWhiteSpace(rec.Subdivision))
-                { existing.Subdivision = rec.Subdivision; changed = true; }
-                if (changed) locUpdated++;
-            }
-
-            batchCount++;
-            if (batchCount >= batchSize)
-            {
-                await _db.SaveChangesAsync(ct);
-                batchCount = 0;
+                Console.WriteLine($"Hata oluştu. Satır: {rows} | Hata: {ex.Message}");
+                break;
             }
         }
+
+
 
         if (batchCount > 0)
             await _db.SaveChangesAsync(ct);
