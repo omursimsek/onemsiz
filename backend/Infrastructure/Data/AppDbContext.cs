@@ -20,6 +20,9 @@ public class AppDbContext : DbContext
     public DbSet<Tenant> Tenants => Set<Tenant>();
     public DbSet<AppUser> Users => Set<AppUser>();
     public DbSet<UserTenantMembership> TenantMemberships => Set<UserTenantMembership>();
+    public DbSet<Location> Locations => Set<Location>();
+    public DbSet<LocationIdentifier> LocationIdentifiers => Set<LocationIdentifier>();
+
 
     protected override void OnModelCreating(ModelBuilder b)
     {
@@ -82,6 +85,24 @@ public class AppDbContext : DbContext
         b.Entity<UserTenantMembership>()
             .HasIndex(x => new { x.UserId, x.TenantId, x.Role })
             .IsUnique();
+
+        b.Entity<Location>(cfg =>
+        {
+            cfg.ToTable("Locations");
+            cfg.Property(x => x.Kind).HasConversion<string>();
+            cfg.HasIndex(x => new { x.CountryISO2, x.Name });
+            cfg.HasMany(x => x.Identifiers)
+               .WithOne(i => i.Location)
+               .HasForeignKey(i => i.LocationId)
+               .OnDelete(DeleteBehavior.Cascade);
+        });
+
+        b.Entity<LocationIdentifier>(cfg =>
+        {
+            cfg.ToTable("LocationIdentifiers");
+            cfg.Property(x => x.Scheme).HasConversion<string>();
+            cfg.HasIndex(x => new { x.Scheme, x.Code }).IsUnique();
+        });
     }
 
     public Guid? CurrentTenantId()
