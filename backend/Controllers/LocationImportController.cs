@@ -22,4 +22,54 @@ public class LocationImportController : ControllerBase
         var result = await _svc.ImportUnlocodeAsync(s, ct);
         return Ok(result);
     }
+
+    [HttpPost("import/country-codes")]
+    [Consumes("multipart/form-data")]
+    public async Task<IActionResult> ImportCountryCodes([FromForm] FileUploadDto dto, CancellationToken ct)
+    {
+        if (dto.File is null || dto.File.Length == 0) return BadRequest(new { message = "File is empty" });
+        using var s = dto.File.OpenReadStream();
+        var result = await _svc.ImportCountryCodesAsync(s, ct);
+        return Ok(result);
+    }
+
+    [HttpPost("import/function-classifiers")]
+    [Consumes("multipart/form-data")]
+    public async Task<IActionResult> ImportFunctionClassifiers([FromForm] FileUploadDto dto, CancellationToken ct)
+    {
+        if (dto.File is null || dto.File.Length == 0) return BadRequest(new { message = "File is empty" });
+        using var s = dto.File.OpenReadStream();
+        var result = await _svc.ImportFunctionClassifiersAsync(s, ct);
+        return Ok(result);
+    }
+
+    [HttpPost("import/status-indicators")]
+    [Consumes("multipart/form-data")]
+    public async Task<IActionResult> ImportStatusIndicators([FromForm] FileUploadDto dto, CancellationToken ct)
+    {
+        if (dto.File is null || dto.File.Length == 0) return BadRequest(new { message = "File is empty" });
+        using var s = dto.File.OpenReadStream();
+        var result = await _svc.ImportStatusIndicatorsAsync(s, ct);
+        return Ok(result);
+    }
+
+    [HttpPost("import/subdivision-codes")]
+    [Consumes("multipart/form-data")]
+    public async Task<IActionResult> ImportSubdivisionCodes([FromForm] FileUploadDto dto, CancellationToken ct)
+    {
+        if (dto.File is null || dto.File.Length == 0) return BadRequest(new { message = "File is empty" });
+        using var s = dto.File.OpenReadStream();
+        var result = await _svc.ImportSubdivisionCodesAsync(s, ct);
+        return Ok(result);
+    }
+
+    [HttpPost("import/alias")]
+    [Consumes("multipart/form-data")]
+    public async Task<IActionResult> ImportAlias([FromForm] FileUploadDto dto, CancellationToken ct)
+    {
+        if (dto.File is null || dto.File.Length == 0) return BadRequest(new { message = "File is empty" });
+        using var s = dto.File.OpenReadStream();
+        var result = await _svc.ImportAliasAsync(s, ct);
+        return Ok(result);
+    }
 }

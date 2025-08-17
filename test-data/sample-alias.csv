@@ -1,0 +1,21 @@
+Country Code,Location Code,Alias Name,Alias Type
+TR,IZM,Smyrna,Historical
+TR,IST,Constantinople,Historical
+TR,ANK,Angora,Historical
+TR,BRU,Prousa,Historical
+TR,IZT,Claudiopolis,Historical
+US,NYC,New Amsterdam,Historical
+US,LAX,El Pueblo de Nuestra Señora la Reina de los Ángeles,Historical
+US,CHI,Fort Dearborn,Historical
+US,PHX,Phoenix,Historical
+US,MIA,Fort Dallas,Historical
+DE,MUC,München,Local
+DE,BER,Berlin,Local
+DE,HAM,Hamburg,Local
+DE,STR,Stuttgart,Local
+DE,DUS,Düsseldorf,Local
+FR,PAR,Paris,Local
+FR,LYS,Lyon,Local
+FR,MRS,Marseille,Local
+FR,TLS,Toulouse,Local
+FR,NCE,Nice,Local

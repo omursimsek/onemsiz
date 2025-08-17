@@ -22,6 +22,8 @@ public class AppDbContext : DbContext
     public DbSet<UserTenantMembership> TenantMemberships => Set<UserTenantMembership>();
     public DbSet<Location> Locations => Set<Location>();
     public DbSet<LocationIdentifier> LocationIdentifiers => Set<LocationIdentifier>();
+    public DbSet<DangerousGoods> DangerousGoods => Set<DangerousGoods>();
+    public DbSet<DangerousGoodsIdentifier> DangerousGoodsIdentifiers => Set<DangerousGoodsIdentifier>();
 
 
     protected override void OnModelCreating(ModelBuilder b)
@@ -100,6 +102,26 @@ public class AppDbContext : DbContext
         b.Entity<LocationIdentifier>(cfg =>
         {
             cfg.ToTable("LocationIdentifiers");
+            cfg.Property(x => x.Scheme).HasConversion<string>();
+            cfg.HasIndex(x => new { x.Scheme, x.Code }).IsUnique();
+        });
+
+        // Dangerous Goods
+        b.Entity<DangerousGoods>(cfg =>
+        {
+            cfg.ToTable("DangerousGoods");
+            cfg.Property(x => x.Class).HasConversion<string>();
+            cfg.Property(x => x.PackingGroup).HasConversion<string>();
+            cfg.HasIndex(x => x.UNNumber).IsUnique();
+            cfg.HasMany(x => x.Identifiers)
+               .WithOne(i => i.DangerousGoods)
+               .HasForeignKey(i => i.DangerousGoodsId)
+               .OnDelete(DeleteBehavior.Cascade);
+        });
+
+        b.Entity<DangerousGoodsIdentifier>(cfg =>
+        {
+            cfg.ToTable("DangerousGoodsIdentifiers");
             cfg.Property(x => x.Scheme).HasConversion<string>();
             cfg.HasIndex(x => new { x.Scheme, x.Code }).IsUnique();
         });

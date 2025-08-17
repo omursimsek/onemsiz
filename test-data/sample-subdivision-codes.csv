@@ -1,0 +1,23 @@
+Country Code,Subdivision Code,Subdivision Name,Subdivision Type
+TR,01,Adana,Province
+TR,06,Ankara,Province
+TR,07,Antalya,Province
+TR,16,Bursa,Province
+TR,34,Istanbul,Province
+TR,35,Izmir,Province
+TR,42,Konya,Province
+US,AL,Alabama,State
+US,AK,Alaska,State
+US,AZ,Arizona,State
+US,CA,California,State
+US,NY,New York,State
+DE,BW,Baden-Württemberg,State
+DE,BY,Bavaria,State
+DE,BE,Berlin,State
+DE,BB,Brandenburg,State
+DE,HB,Bremen,State
+FR,ARA,Auvergne-Rhône-Alpes,Region
+FR,BFC,Bourgogne-Franche-Comté,Region
+FR,BRE,Bretagne,Region
+FR,CVL,Centre-Val de Loire,Region
+FR,COR,Corse,Region

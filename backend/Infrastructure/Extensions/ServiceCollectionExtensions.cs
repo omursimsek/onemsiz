@@ -38,6 +38,8 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IUserMembershipService, UserMembershipService>();
         services.AddScoped<ILocationService, LocationService>();
         services.AddScoped<ILocationImportService, LocationImportService>(); // ETL istiyorsan
+        services.AddScoped<IDangerousGoodsService, DangerousGoodsService>();
+        services.AddScoped<IDangerousGoodsImportService, DangerousGoodsImportService>();
 
         // Teknik servisler (JWT üretimi vs.)
         // services.AddSingleton<ITokenService, TokenService>();

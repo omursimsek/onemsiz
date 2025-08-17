@@ -4,8 +4,8 @@ import {HEADER_HEIGHT, SIDEBAR_WIDTH} from '../shared/ui';
 
 type Props = {
   width?: number;
-  /** optional: "/super", "/super/users", "/super/tenants" */
-  active?: '/super' | '/super/users' | '/super/tenants';
+  /** optional: "/super", "/super/users", "/super/tenants", "/super/location-import", "/super/locations", "/super/dangerous-goods", "/super/dangerous-goods-import" */
+  active?: '/super' | '/super/users' | '/super/tenants' | '/super/location-import' | '/super/locations' | '/super/dangerous-goods' | '/super/dangerous-goods-import';
 };
 
 export default async function SuperNav({width = SIDEBAR_WIDTH, active}: Props) {
@@ -35,6 +35,10 @@ export default async function SuperNav({width = SIDEBAR_WIDTH, active}: Props) {
         <NavItem href="/super"        label={`🏠 ${t('dashboard')}`} active={active === '/super'} />
         <NavItem href="/super/users"  label={`👥 ${t('users')}`}     active={active === '/super/users'} />
         <NavItem href="/super/tenants" label={`🏢 ${t('tenants')}`}  active={active === '/super/tenants'} />
+        <NavItem href="/super/location-import" label={`📊 Location Import`} active={active === '/super/location-import'} />
+        <NavItem href="/super/locations" label={`📍 Locations`} active={active === '/super/locations'} />
+        <NavItem href="/super/dangerous-goods" label={`⚠️ Dangerous Goods`} active={active === '/super/dangerous-goods'} />
+        <NavItem href="/super/dangerous-goods-import" label={`📦 DG Import`} active={active === '/super/dangerous-goods-import'} />
       </nav>
     </aside>
   );

@@ -50,6 +50,60 @@ public class LocationService : ILocationService
         return list.Select(Map).ToList();
     }
 
+    public async Task<LocationSearchResult> SearchWithPaginationAsync(
+        string? query, string? country, string? scheme, string? code, int take = 50, int page = 1, CancellationToken ct = default)
+    {
+        IQueryable<Location> q = _db.Locations.Include(l => l.Identifiers);
+
+        if (!string.IsNullOrWhiteSpace(query))
+        {
+            var ql = query.Trim().ToLower();
+            q = q.Where(l => l.Name.ToLower().Contains(ql) || (l.NameAscii != null && l.NameAscii.ToLower().Contains(ql)));
+        }
+        if (!string.IsNullOrWhiteSpace(country))
+        {
+            var c2 = country.Trim().ToUpper();
+            q = q.Where(l => l.CountryISO2 == c2);
+        }
+        if (!string.IsNullOrWhiteSpace(scheme))
+        {
+            if (Enum.TryParse<CodeScheme>(scheme, true, out var sch))
+                q = q.Where(l => l.Identifiers.Any(i => i.Scheme == sch));
+        }
+        if (!string.IsNullOrWhiteSpace(code))
+        {
+            var cd = code.Trim().ToUpper();
+            q = q.Where(l => l.Identifiers.Any(i => i.Code == cd));
+        }
+
+        // Total count
+        var totalCount = await q.CountAsync(ct);
+        
+        // Pagination
+        var totalPages = (int)Math.Ceiling((double)totalCount / take);
+        var currentPage = Math.Max(1, Math.Min(page, totalPages));
+        var skip = (currentPage - 1) * take;
+        
+        // Get paginated results
+        var locations = await q.OrderBy(l => l.Name)
+            .Skip(skip)
+            .Take(take)
+            .ToListAsync(ct);
+
+        var hasNextPage = currentPage < totalPages;
+        var hasPrevPage = currentPage > 1;
+
+        return new LocationSearchResult(
+            locations.Select(Map).ToList(),
+            totalCount,
+            totalPages,
+            currentPage,
+            take,
+            hasNextPage,
+            hasPrevPage
+        );
+    }
+
     public async Task<LocationDto> CreateAsync(LocationCreateRequest req, CancellationToken ct = default)
     {
         var loc = new Location
@@ -119,9 +173,53 @@ public class LocationService : ILocationService
         return true;
     }
 
+    // Statistics metodları
+    public async Task<LocationStatistics> GetStatisticsAsync(CancellationToken ct = default)
+    {
+        var totalLocations = await _db.Locations.CountAsync(ct);
+        var uniqueCountries = await _db.Locations.Select(l => l.CountryISO2).Distinct().CountAsync(ct);
+        var totalIdentifiers = await _db.LocationIdentifiers.CountAsync(ct);
+        
+        var now = DateTime.UtcNow;
+        var thisMonthLocations = await _db.Locations
+            .Where(l => l.CreatedAt.Month == now.Month && l.CreatedAt.Year == now.Year)
+            .CountAsync(ct);
+
+        return new LocationStatistics(totalLocations, uniqueCountries, totalIdentifiers, thisMonthLocations);
+    }
+
+    public async Task<IReadOnlyList<CountryStatistics>> GetCountryStatisticsAsync(CancellationToken ct = default)
+    {
+        var stats = await _db.Locations
+            .GroupBy(l => l.CountryISO2)
+            .Select(g => new CountryStatistics(
+                g.Key,
+                g.Count(),
+                g.SelectMany(l => l.Identifiers).Count()
+            ))
+            .OrderByDescending(s => s.LocationCount)
+            .ToListAsync(ct);
+
+        return stats;
+    }
+
+    public async Task<IReadOnlyList<SchemeStatistics>> GetSchemeStatisticsAsync(CancellationToken ct = default)
+    {
+        var stats = await _db.LocationIdentifiers
+            .GroupBy(i => i.Scheme)
+            .Select(g => new SchemeStatistics(
+                g.Key.ToString(),
+                g.Count()
+            ))
+            .OrderByDescending(s => s.IdentifierCount)
+            .ToListAsync(ct);
+
+        return stats;
+    }
+
     private static LocationDto Map(Location x) =>
         new LocationDto(
             x.Id, x.Name, x.NameAscii, x.CountryISO2, x.Subdivision, x.Kind, x.IsActive, x.CreatedAt,
-            x.Identifiers.Select(i => new IdentifierDto(i.Id, i.Scheme.ToString(), i.Code)).ToList()
+            x.Identifiers.Select(i => new IdentifierDto(i.Id, i.Scheme.ToString(), i.Code, i.ExtraJson)).ToList()
         );
 }

@@ -15,10 +15,10 @@ public class PlatformLocationsController : ControllerBase
 
     [HttpGet]
     public async Task<IActionResult> Search([FromQuery] string? q, [FromQuery] string? country,
-        [FromQuery] string? scheme, [FromQuery] string? code, [FromQuery] int take = 50, CancellationToken ct = default)
+        [FromQuery] string? scheme, [FromQuery] string? code, [FromQuery] int take = 50, [FromQuery] int page = 1, CancellationToken ct = default)
     {
-        var list = await _svc.SearchAsync(q, country, scheme, code, take, ct);
-        return Ok(list);
+        var result = await _svc.SearchWithPaginationAsync(q, country, scheme, code, take, page, ct);
+        return Ok(result);
     }
 
     [HttpGet("{id:guid}")]
@@ -54,5 +54,27 @@ public class PlatformLocationsController : ControllerBase
     {
         var ok = await _svc.RemoveIdentifierAsync(id, identifierId, ct);
         return ok ? NoContent() : NotFound();
+    }
+
+    // Statistics endpoint'leri
+    [HttpGet("statistics")]
+    public async Task<IActionResult> GetStatistics(CancellationToken ct)
+    {
+        var stats = await _svc.GetStatisticsAsync(ct);
+        return Ok(stats);
+    }
+
+    [HttpGet("statistics/countries")]
+    public async Task<IActionResult> GetCountryStatistics(CancellationToken ct)
+    {
+        var stats = await _svc.GetCountryStatisticsAsync(ct);
+        return Ok(stats);
+    }
+
+    [HttpGet("statistics/schemes")]
+    public async Task<IActionResult> GetSchemeStatistics(CancellationToken ct)
+    {
+        var stats = await _svc.GetSchemeStatisticsAsync(ct);
+        return Ok(stats);
     }
 }

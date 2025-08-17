@@ -15,4 +15,4 @@ public record LocationDto(
     IReadOnlyList<IdentifierDto> Identifiers
 );
 
-public record IdentifierDto(Guid Id, string Scheme, string Code);
+public record IdentifierDto(Guid Id, string Scheme, string Code, string? ExtraJson);

@@ -1,0 +1,10 @@
+Function Code,Function Name,Description
+1,Port,Seaport or inland waterway port
+2,Rail,Railway station
+3,Road,Road transport
+4,Airport,Airport
+5,Postal,Postal exchange office
+6,Multimodal,Multimodal transport
+7,Fixed,Fixed transport functions
+8,Border,Border crossing
+9,Unknown,Unknown function

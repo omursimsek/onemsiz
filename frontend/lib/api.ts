@@ -28,3 +28,13 @@ export async function apiPost<T = any>(url: string, data?: any, init: RequestIni
   });
   return handle(res);
 }
+
+export async function apiPostForm<T = any>(url: string, formData: FormData, init: RequestInit = {}): Promise<T> {
+  const res = await fetch(url, {
+    method: 'POST',
+    body: formData,
+    cache: 'no-store',
+    ...init
+  });
+  return handle(res);
+}
